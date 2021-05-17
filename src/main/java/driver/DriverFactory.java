@@ -10,6 +10,8 @@ import properties.PropertiesManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DriverFactory {
 
@@ -23,7 +25,8 @@ public class DriverFactory {
     }
 
     public static WebDriver createInstance(BrowserInstance browserInstance) throws MalformedURLException {
-
+        Logger logger = Logger.getLogger("org.openqa.selenium.remote");
+        logger.setLevel(Level.OFF);
         switch (browserInstance.getBrowserName()) {
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", "webdriver/chromedriver.exe");
