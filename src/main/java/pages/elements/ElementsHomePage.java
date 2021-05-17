@@ -54,44 +54,44 @@ public class ElementsHomePage extends BasePage {
         return new TextBoxPage();
     }
 
-    public ElementsHomePage clickOnCheckBoxButton() {
+    public CheckBoxPage clickOnCheckBoxButton() {
         click(checkBox_button);
-        return new ElementsHomePage();
+        return new CheckBoxPage();
     }
 
-    public ElementsHomePage clickOnRadioButtonButton() {
+    public RadioButtonPage clickOnRadioButtonButton() {
         click(textBox_button);
-        return new ElementsHomePage();
+        return new RadioButtonPage();
     }
 
-    public ElementsHomePage clickOnWebTablesButton() {
+    public WebTablesPage clickOnWebTablesButton() {
         click(webTables_button);
-        return new ElementsHomePage();
+        return new WebTablesPage();
     }
 
-    public ElementsHomePage clickOnButtonsButton() {
+    public ButtonsPage clickOnButtonsButton() {
         click(buttons_button);
-        return new ElementsHomePage();
+        return new ButtonsPage();
     }
 
-    public ElementsHomePage clickOnLinksButton() {
+    public LinksPage clickOnLinksButton() {
         click(links_button);
-        return new ElementsHomePage();
+        return new LinksPage();
     }
 
-    public ElementsHomePage clickOnBrokenLinksImagesButton() {
+    public BrokenLinksImages clickOnBrokenLinksImagesButton() {
         click(brokenLinksImages_button);
-        return new ElementsHomePage();
+        return new BrokenLinksImages();
     }
 
-    public ElementsHomePage clickOnUploadAndDownloadButton() {
+    public UploadAndDownloadPage clickOnUploadAndDownloadButton() {
         click(uploadAndDownload_button);
-        return new ElementsHomePage();
+        return new UploadAndDownloadPage();
     }
 
-    public ElementsHomePage clickOnDynamicPropertiesButton() {
+    public DynamicPropertiesPage clickOnDynamicPropertiesButton() {
         click(dynamicProperties_button);
-        return new ElementsHomePage();
+        return new DynamicPropertiesPage();
     }
 
 

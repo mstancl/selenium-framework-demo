@@ -1,8 +1,10 @@
 package com.mstancl.regression;
 
 import com.mstancl.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.elements.CheckBoxPage;
 import pages.elements.TextBoxPage;
 import pages.home.HomePage;
 
@@ -27,6 +29,23 @@ public class ElementsTestSuite extends BaseTest {
         softAssert.assertEquals(textBoxPage.getOutputPermanentAddress(), "Permananet Address :Tester permanent address street 24");
         softAssert.assertAll();
 
+    }
+
+    @Test(description = "This test demonstrates 'Check Box' functionality from Elements")
+    public void checkBox() {
+
+        CheckBoxPage checkBoxPage = new HomePage()
+                .clickOnElementsTile()
+                .clickOnCheckBoxButton()
+                .clickOnExpandAllButton()
+                .clickOnAngularCheckBox()
+                .clickOnPrivateCheckBox()
+                .clickOnWordCheckBox();
+
+        Assert.assertEquals(checkBoxPage.getResult(),"You have selected :\n" +
+                "angular\n" +
+                "private\n" +
+                "wordFile");
 
     }
 
