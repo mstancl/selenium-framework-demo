@@ -51,10 +51,10 @@ public class DriverFactory {
                 }
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
-                System.setProperty("webdriver.edge.driver", System.getenv("EDGE_WEBDRIVER"));
+                System.setProperty("webdriver.edge.driver", "webdriver/edgedriver.exe");
                 return new EdgeDriver(edgeOptions);
         }
-        throw new UnsupportedOperationException("Unsuported browser! " + browserInstance.toString());
+        throw new UnsupportedOperationException("Unsupported browser! " + browserInstance.toString());
 
     }
 
