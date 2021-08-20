@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import pages.elements.ElementsHomePage;
+import pages.forms.FormsHomePage;
 import utils.PageWait;
 
 public class HomePage extends BasePage {
@@ -38,6 +39,11 @@ public class HomePage extends BasePage {
     public ElementsHomePage clickOnElementsTile() {
         click(elements_tile);
         return new ElementsHomePage();
+    }
+
+    public FormsHomePage clickOnFormsTile() {
+        click(forms_tile);
+        return new FormsHomePage();
     }
 
 
