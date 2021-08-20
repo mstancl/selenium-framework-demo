@@ -1,4 +1,4 @@
-package com.mstancl.regression;
+package com.mstancl.regressionSuites;
 
 import com.mstancl.BaseTest;
 import org.testng.Assert;
