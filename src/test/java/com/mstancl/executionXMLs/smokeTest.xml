@@ -2,14 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Elements test suite" parallel="tests" thread-count="2">
-    <test name="elements test suite thread group 1" enabled="true">
+    <test name="elements test suite" enabled="true">
         <classes>
             <class name="com.mstancl.regressionSuites.ElementsTestSuite"/>
         </classes>
     </test>
-    <test name="elements test suite thread group 2" enabled="true">
+    <test name="forms test suite" enabled="true">
         <classes>
-            <class name="com.mstancl.regressionSuites.ElementsTestSuite"/>
+            <class name="com.mstancl.regressionSuites.FormsTestSuite"/>
         </classes>
     </test>
 </suite>
