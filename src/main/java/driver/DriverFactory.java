@@ -51,8 +51,13 @@ public class DriverFactory {
                 }
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
-                System.setProperty("webdriver.edge.driver", "webdriver/edgedriver.exe");
-                return new EdgeDriver(edgeOptions);
+                System.setProperty("webdriver.edge.driver", "webdriver/msedgedriver.exe");
+                if (browserInstance.getBrowserLocation().toLowerCase().equals("local")) {
+                    return new EdgeDriver(edgeOptions);
+                } else {
+                    return new RemoteWebDriver(new URL(PropertiesManager.getProperty("grid.hub.url")), edgeOptions);
+                }
+
         }
         throw new UnsupportedOperationException("Unsupported browser! " + browserInstance.toString());
 
