@@ -1,12 +1,12 @@
 package com.mstancl.regressionSuites;
 
-import com.mstancl.BaseTest;
+import com.mstancl.BaseSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.forms.FormsHomePage;
 import pages.home.HomePage;
 
-public class FormsTestSuite extends BaseTest {
+public class FormsTestSuite extends BaseSuite {
 
     @Test(description = "This test demonstrates 'Practice Form functionality from Elements'")
     public void practiceForm(){

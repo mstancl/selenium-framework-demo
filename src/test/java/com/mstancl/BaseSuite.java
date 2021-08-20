@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 
-public class BaseTest {
+public class BaseSuite {
 
     @BeforeSuite
     public void beforeSuite() throws IOException {

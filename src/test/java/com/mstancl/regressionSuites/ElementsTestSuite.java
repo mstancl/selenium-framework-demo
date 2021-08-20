@@ -1,6 +1,6 @@
 package com.mstancl.regressionSuites;
 
-import com.mstancl.BaseTest;
+import com.mstancl.BaseSuite;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -8,7 +8,7 @@ import pages.elements.CheckBoxPage;
 import pages.elements.TextBoxPage;
 import pages.home.HomePage;
 
-public class ElementsTestSuite extends BaseTest {
+public class ElementsTestSuite extends BaseSuite {
 
     @Test(description = "This test demonstrates 'Text Box' functionality from Elements")
     public void textBox() {
