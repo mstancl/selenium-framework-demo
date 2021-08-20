@@ -30,6 +30,7 @@ public class BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         DriverManager.getDriver().get(PropertiesManager.getProperty("sut.url"));
+        DriverManager.getDriver().manage().window().maximize();
     }
 
     @AfterMethod
