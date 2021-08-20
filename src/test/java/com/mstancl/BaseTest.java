@@ -8,6 +8,7 @@ import properties.PropertiesManager;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+
 public class BaseTest {
 
     @BeforeSuite
@@ -33,7 +34,7 @@ public class BaseTest {
 
     @AfterMethod
     public void afterMethod() {
-        DriverManager.getDriver().close();
+
     }
 
 }
