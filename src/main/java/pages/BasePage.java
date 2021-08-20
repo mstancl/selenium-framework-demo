@@ -14,7 +14,7 @@ public class BasePage {
 
     protected void click(WebElement webElement) {
 
-        JavascriptExecutor jse = (JavascriptExecutor)DriverManager.getDriver();
+        JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
         PageWait.waitForWebElementToLoad(webElement);
@@ -22,11 +22,19 @@ public class BasePage {
     }
 
     protected void enterInput(WebElement webElement, String input) {
+
+        JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView()", webElement);
+
         PageWait.waitForWebElementToLoad(webElement);
         webElement.sendKeys(input);
     }
 
     protected String read(WebElement webElement) {
+
+        JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView()", webElement);
+
         PageWait.waitForWebElementToLoad(webElement);
         return webElement.getText();
     }
