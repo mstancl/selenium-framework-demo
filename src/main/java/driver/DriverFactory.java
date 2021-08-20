@@ -3,6 +3,8 @@ package driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -39,7 +41,6 @@ public class DriverFactory {
                 } else if (browserInstance.getBrowserLocation().toLowerCase().equals("grid")) {
                     return new RemoteWebDriver(new URL(PropertiesManager.getProperty("grid.hub.url")), chromeOptions);
                 }
-                break;
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "webdriver/geckodriver.exe");
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -48,7 +49,10 @@ public class DriverFactory {
                 } else if (browserInstance.getBrowserLocation().toLowerCase().equals("grid")) {
                     return new RemoteWebDriver(new URL(PropertiesManager.getProperty("grid.hub.url")), firefoxOptions);
                 }
-                break;
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                System.setProperty("webdriver.edge.driver", System.getenv("EDGE_WEBDRIVER"));
+                return new EdgeDriver(edgeOptions);
         }
         throw new UnsupportedOperationException("Unsuported browser! " + browserInstance.toString());
 
