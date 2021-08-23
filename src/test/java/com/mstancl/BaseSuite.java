@@ -2,13 +2,14 @@ package com.mstancl;
 
 import driver.DriverFactory;
 import driver.DriverManager;
+import extentTestReports.TestListener;
 import org.testng.annotations.*;
 import properties.PropertiesManager;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-
+@Listeners({TestListener.class})
 public class BaseSuite {
 
     @BeforeSuite
