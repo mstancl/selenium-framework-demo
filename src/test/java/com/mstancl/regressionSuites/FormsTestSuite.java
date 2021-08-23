@@ -29,8 +29,6 @@ public class FormsTestSuite extends BaseSuite {
         softAssert.assertEquals(formsHomePage.getStudentAddressAfterSubmit(), "Tester Town 12, Dummy republic");
         softAssert.assertAll();
 
-        formsHomePage
-                .clickOnCloseButton();
 
     }
 
