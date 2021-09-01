@@ -20,7 +20,7 @@ using :
  
   #####STEPS  
   
-  - `Git clone https://github.com/mstancl/selenium-framework-demo.git`  via git bash  
+  - `git clone https://github.com/mstancl/selenium-framework-demo.git`  via git bash  
     - Or you can open Intellij - File - new -> project from version control and paste the .git URL 
   - Open the project in IntelliJ ( file -> open)  
   - Go to settings and configure Maven and Git to point to your sources  
