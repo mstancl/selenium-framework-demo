@@ -2,6 +2,7 @@ package pages.elements;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 import pages.BasePage;
 import utils.PageWait;
 
@@ -19,7 +20,12 @@ public class ElementsHomePage extends BasePage {
                 brokenLinksImages_button,
                 uploadAndDownload_button,
                 dynamicProperties_button);
+        Assert.assertEquals(read(mainHeader_label),"Elements");
+
     }
+
+    @FindBy(xpath = ".//div[@class='main-header']")
+    private WebElement mainHeader_label;
 
     @FindBy(xpath = ".//span[@class='text'][text()='Text Box']")
     private WebElement textBox_button;
