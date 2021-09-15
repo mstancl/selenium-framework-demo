@@ -1,9 +1,13 @@
 package pages.elements;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 import pages.BasePage;
 import utils.PageWait;
+
+import static driver.DriverManager.getDriver;
 
 public class TextBoxPage extends BasePage {
 
@@ -14,7 +18,12 @@ public class TextBoxPage extends BasePage {
                 currentAddress_textBox,
                 permanentAddress_textBox,
                 submitButton);
+        Assert.assertEquals(read(mainHeader_label), "Text Box");
+
     }
+
+    @FindBy(xpath = ".//div[@class='main-header']")
+    private WebElement mainHeader_label;
 
     @FindBy(id = "userName")
     private WebElement userName_textBox;
@@ -42,6 +51,10 @@ public class TextBoxPage extends BasePage {
 
     @FindBy(xpath = ".//div[@id='output']//p[@id='permanentAddress']")
     private WebElement outputPermanentAddress_text;
+
+    public String getErrorClassOfUserEmail() {
+        return getAttribute(userEmail_textBox, "class");
+    }
 
     public TextBoxPage enterUserName(String input) {
         enterInput(userName_textBox, input);
