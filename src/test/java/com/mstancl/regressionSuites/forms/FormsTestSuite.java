@@ -62,8 +62,34 @@ public class FormsTestSuite extends BaseSuite {
     }
 
 
+    @Test(description = "002. Form field validations - text fields")
+    public void formFieldValidationsTextFields() {
+        FormsHomePage formsHomePage = new HomePage()
+                .clickOnFormsTile()
+                .clickOnPracticeFormButton();
 
+        formsHomePage
+                .inputFirstName("Dummy")
+                .inputLastName("Tester")
+                .clickOnSubmitButton();
 
+        Assert.assertTrue(formsHomePage.getFirstNameBorderColor().getRed() < 150 && formsHomePage.getFirstNameBorderColor().getBlue() < 150 && formsHomePage.getFirstNameBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getFirstNameBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getLastNameBorderColor().getRed() < 150 && formsHomePage.getLastNameBorderColor().getBlue() < 150 && formsHomePage.getLastNameBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getLastNameBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getEmailBorderColor().getRed() < 150 && formsHomePage.getEmailBorderColor().getBlue() < 150 && formsHomePage.getEmailBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getEmailBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getDateOfBirthBorderColor().getRed() < 150 && formsHomePage.getDateOfBirthBorderColor().getBlue() < 150 && formsHomePage.getDateOfBirthBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getDateOfBirthBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getGenderMaleRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderMaleRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderMaleRadioButtonBorderColor().getGreen() < 100, "The color is incorrect!" + formsHomePage.getGenderMaleRadioButtonBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getGenderFemaleRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderFemaleRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderFemaleRadioButtonBorderColor().getGreen() < 100, "The color is incorrect!" + formsHomePage.getGenderFemaleRadioButtonBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getGenderOtherRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderOtherRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderOtherRadioButtonBorderColor().getGreen() < 100, "The color is incorrect!" + formsHomePage.getGenderOtherRadioButtonBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getMobileBorderColor().getRed() > 200 && formsHomePage.getMobileBorderColor().getBlue() < 100 && formsHomePage.getMobileBorderColor().getGreen() < 100, "The color is incorrect!" + formsHomePage.getMobileBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getCurrentAddressBorderColor().getRed() < 150 && formsHomePage.getCurrentAddressBorderColor().getBlue() < 150 && formsHomePage.getCurrentAddressBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getCurrentAddressBorderColor().toString());
+
+        formsHomePage
+                .inputUserEmail("randomString");
+
+        System.out.println(formsHomePage.getEmailBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getEmailBorderColor().getRed() < 150 && formsHomePage.getEmailBorderColor().getBlue() < 150 && formsHomePage.getEmailBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getEmailBorderColor().toString());
+
+    }
 
 
 
