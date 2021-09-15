@@ -161,6 +161,10 @@ public class FormsHomePage extends BasePage {
         return Utilities.parseRGBValuesFromString(lastName_textField.getCssValue("border-color"));
     }
 
+    public RGBModel getEmailBorderColor() {
+        return Utilities.parseRGBValuesFromString(userEmail_textField.getCssValue("border-color"));
+    }
+
     public RGBModel getGenderMaleRadioButtonBorderColor() {
         return Utilities.parseRGBValuesFromString(genderMale_label.getCssValue("border-color"));
     }
@@ -178,6 +182,14 @@ public class FormsHomePage extends BasePage {
         return Utilities.parseRGBValuesFromString(userNumber_textField.getCssValue("border-color"));
     }
 
+    public RGBModel getDateOfBirthBorderColor() {
+        return Utilities.parseRGBValuesFromString(dateOfBirth_textField.getCssValue("border-color"));
+    }
+
+    public RGBModel getCurrentAddressBorderColor() {
+        return Utilities.parseRGBValuesFromString(currentAddress_textField.getCssValue("border-color"));
+    }
+
     public FormsHomePage clickOnSubmitButton() {
         click(submit_button);
 
@@ -188,7 +200,6 @@ public class FormsHomePage extends BasePage {
             Utilities.sleep(100);
             counter++;
         }
-        System.out.println(getMobileBorderColor().toString());
         return this;
     }
 
