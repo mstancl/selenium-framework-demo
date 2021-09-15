@@ -2,8 +2,11 @@ package pages;
 
 import driver.DriverManager;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.asserts.SoftAssert;
 import utils.PageWait;
 
 public class BasePage {
@@ -50,5 +53,30 @@ public class BasePage {
         return webElement.getAttribute(attribute);
     }
 
+    protected boolean isElementPresent(WebElement webElement) {
+        try {
+            PageWait.waitForWebElementToLoad(0, webElement);
+            return true;
+        } catch (TimeoutException | NoSuchElementException e) {
+            return false;
+        }
+    }
 
+    public void validateWebElementsAreNotVisible(WebElement... elements) {
+        SoftAssert softAssert = new SoftAssert();
+
+        for (WebElement element : elements) {
+            softAssert.assertTrue(!isElementPresent(element));
+        }
+        softAssert.assertAll();
+    }
+
+    public void validateWebElementsAreVisible(WebElement... elements) {
+        SoftAssert softAssert = new SoftAssert();
+
+        for (WebElement element : elements) {
+            softAssert.assertTrue(isElementPresent(element));
+        }
+        softAssert.assertAll();
+    }
 }
