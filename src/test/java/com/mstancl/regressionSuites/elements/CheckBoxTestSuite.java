@@ -1,4 +1,4 @@
-package com.mstancl.regressionSuites;
+package com.mstancl.regressionSuites.elements;
 
 import com.mstancl.BaseSuite;
 import org.testng.Assert;
@@ -8,9 +8,9 @@ import pages.elements.CheckBoxPage;
 import pages.elements.TextBoxPage;
 import pages.home.HomePage;
 
-public class ElementsTestSuite extends BaseSuite {
+public class CheckBoxTestSuite extends BaseSuite {
 
-    @Test(description = "This test demonstrates 'Text Box' functionality from Elements")
+    @Test(description = "001. Verify Text Box Functionality")
     public void textBox() {
 
         TextBoxPage textBoxPage = new HomePage()
