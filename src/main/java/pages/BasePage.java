@@ -21,7 +21,9 @@ public class BasePage {
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
         PageWait.waitForWebElementToLoad(webElement);
+        PageWait.waitForDocumentReadyState();
         webElement.click();
+        PageWait.waitForDocumentReadyState();
     }
 
     protected void enterInput(WebElement webElement, String input) {
@@ -30,10 +32,12 @@ public class BasePage {
         JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
-        PageWait.waitForWebElementToLoad(webElement);
 
+        PageWait.waitForWebElementToLoad(webElement);
+        PageWait.waitForDocumentReadyState();
         webElement.clear();
         webElement.sendKeys(input);
+        PageWait.waitForDocumentReadyState();
     }
 
     protected String read(WebElement webElement) {
@@ -42,6 +46,7 @@ public class BasePage {
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
         PageWait.waitForWebElementToLoad(webElement);
+        PageWait.waitForDocumentReadyState();
         return webElement.getText();
     }
 
@@ -50,10 +55,12 @@ public class BasePage {
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
         PageWait.waitForWebElementToLoad(webElement);
+        PageWait.waitForDocumentReadyState();
         return webElement.getAttribute(attribute);
     }
 
     protected boolean isElementPresent(WebElement webElement) {
+        PageWait.waitForDocumentReadyState();
         try {
             PageWait.waitForWebElementToLoad(0, webElement);
             return true;
@@ -63,6 +70,7 @@ public class BasePage {
     }
 
     public void validateWebElementsAreNotVisible(WebElement... elements) {
+        PageWait.waitForDocumentReadyState();
         SoftAssert softAssert = new SoftAssert();
 
         for (WebElement element : elements) {
@@ -72,6 +80,7 @@ public class BasePage {
     }
 
     public void validateWebElementsAreVisible(WebElement... elements) {
+        PageWait.waitForDocumentReadyState();
         SoftAssert softAssert = new SoftAssert();
 
         for (WebElement element : elements) {
