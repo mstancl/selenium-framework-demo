@@ -10,7 +10,7 @@ import pages.home.HomePage;
 public class TextBoxTestSuite extends BaseSuite {
 
     @Test(description = "001. Verify Text Box Functionality")
-    public void textBox() {
+    public void verifyTextBoxFunctionality() {
 
         TextBoxPage textBoxPage = new HomePage()
                 .clickOnElementsTile()
