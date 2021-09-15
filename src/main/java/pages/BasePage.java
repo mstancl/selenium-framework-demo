@@ -23,10 +23,13 @@ public class BasePage {
 
     protected void enterInput(WebElement webElement, String input) {
 
+
         JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
         PageWait.waitForWebElementToLoad(webElement);
+
+        webElement.clear();
         webElement.sendKeys(input);
     }
 
@@ -37,6 +40,14 @@ public class BasePage {
 
         PageWait.waitForWebElementToLoad(webElement);
         return webElement.getText();
+    }
+
+    protected String getAttribute(WebElement webElement, String attribute) {
+        JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView()", webElement);
+
+        PageWait.waitForWebElementToLoad(webElement);
+        return webElement.getAttribute(attribute);
     }
 
 
