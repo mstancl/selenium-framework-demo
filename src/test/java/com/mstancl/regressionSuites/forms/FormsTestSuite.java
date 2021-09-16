@@ -20,22 +20,22 @@ public class FormsTestSuite extends BaseSuite {
         Assert.assertEquals(formsHomePage.getSubHeader(), "Student Registration Form");
         Assert.assertEquals(formsHomePage.getDateOfBirth(), DateHelpers.getCurrentDateMMMonthNameYYYY());
 
-        Assert.assertTrue(formsHomePage.getFirstNameBorderColor().getRed() > 200 && formsHomePage.getFirstNameBorderColor().getBlue() > 200 && formsHomePage.getFirstNameBorderColor().getGreen() > 200);
-        Assert.assertTrue(formsHomePage.getLastNameBorderColor().getRed() > 200 && formsHomePage.getLastNameBorderColor().getBlue() > 200 && formsHomePage.getLastNameBorderColor().getGreen() > 200);
-        Assert.assertTrue(formsHomePage.getGenderMaleRadioButtonBorderColor().getRed() < 50 && formsHomePage.getGenderMaleRadioButtonBorderColor().getBlue() < 50 && formsHomePage.getGenderMaleRadioButtonBorderColor().getGreen() < 50, formsHomePage.getGenderMaleRadioButtonBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getGenderFemaleRadioButtonBorderColor().getRed() < 50 && formsHomePage.getGenderFemaleRadioButtonBorderColor().getBlue() < 50 && formsHomePage.getGenderFemaleRadioButtonBorderColor().getGreen() < 50);
-        Assert.assertTrue(formsHomePage.getGenderOtherRadioButtonBorderColor().getRed() < 50 && formsHomePage.getGenderOtherRadioButtonBorderColor().getBlue() < 50 && formsHomePage.getGenderOtherRadioButtonBorderColor().getGreen() < 50);
-        Assert.assertTrue(formsHomePage.getMobileBorderColor().getRed() > 200 && formsHomePage.getMobileBorderColor().getBlue() > 200 && formsHomePage.getMobileBorderColor().getGreen() > 200);
+        Assert.assertTrue(formsHomePage.getFirstNameBorderColor().isGray());
+        Assert.assertTrue(formsHomePage.getLastNameBorderColor().isGray());
+        Assert.assertTrue(formsHomePage.getGenderMaleRadioButtonBorderColor().isBlack());
+        Assert.assertTrue(formsHomePage.getGenderFemaleRadioButtonBorderColor().isBlack());
+        Assert.assertTrue(formsHomePage.getGenderOtherRadioButtonBorderColor().isBlack());
+        Assert.assertTrue(formsHomePage.getMobileBorderColor().isGray());
 
         formsHomePage
                 .clickOnSubmitButton();
 
-        Assert.assertTrue(formsHomePage.getFirstNameBorderColor().getRed() > 200 && formsHomePage.getFirstNameBorderColor().getBlue() < 100 && formsHomePage.getFirstNameBorderColor().getGreen() < 100);
-        Assert.assertTrue(formsHomePage.getLastNameBorderColor().getRed() > 200 && formsHomePage.getLastNameBorderColor().getBlue() < 100 && formsHomePage.getLastNameBorderColor().getGreen() < 100);
-        Assert.assertTrue(formsHomePage.getGenderMaleRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderMaleRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderMaleRadioButtonBorderColor().getGreen() < 100);
-        Assert.assertTrue(formsHomePage.getGenderFemaleRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderFemaleRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderFemaleRadioButtonBorderColor().getGreen() < 100);
-        Assert.assertTrue(formsHomePage.getGenderOtherRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderOtherRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderOtherRadioButtonBorderColor().getGreen() < 100);
-        Assert.assertTrue(formsHomePage.getMobileBorderColor().getRed() > 200 && formsHomePage.getMobileBorderColor().getBlue() < 100 && formsHomePage.getMobileBorderColor().getGreen() < 100);
+        Assert.assertTrue(formsHomePage.getFirstNameBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getLastNameBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getGenderMaleRadioButtonBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getGenderFemaleRadioButtonBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getGenderOtherRadioButtonBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getMobileBorderColor().isRed());
 
         formsHomePage
                 .inputFirstName("Mike")
@@ -73,21 +73,20 @@ public class FormsTestSuite extends BaseSuite {
                 .inputLastName("Tester")
                 .clickOnSubmitButton();
 
-        Assert.assertTrue(formsHomePage.getFirstNameBorderColor().getRed() < 150 && formsHomePage.getFirstNameBorderColor().getBlue() < 150 && formsHomePage.getFirstNameBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getFirstNameBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getLastNameBorderColor().getRed() < 150 && formsHomePage.getLastNameBorderColor().getBlue() < 150 && formsHomePage.getLastNameBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getLastNameBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getEmailBorderColor().getRed() < 150 && formsHomePage.getEmailBorderColor().getBlue() < 150 && formsHomePage.getEmailBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getEmailBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getDateOfBirthBorderColor().getRed() < 150 && formsHomePage.getDateOfBirthBorderColor().getBlue() < 150 && formsHomePage.getDateOfBirthBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getDateOfBirthBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getGenderMaleRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderMaleRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderMaleRadioButtonBorderColor().getGreen() < 100, "The color is incorrect!" + formsHomePage.getGenderMaleRadioButtonBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getGenderFemaleRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderFemaleRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderFemaleRadioButtonBorderColor().getGreen() < 100, "The color is incorrect!" + formsHomePage.getGenderFemaleRadioButtonBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getGenderOtherRadioButtonBorderColor().getRed() > 200 && formsHomePage.getGenderOtherRadioButtonBorderColor().getBlue() < 100 && formsHomePage.getGenderOtherRadioButtonBorderColor().getGreen() < 100, "The color is incorrect!" + formsHomePage.getGenderOtherRadioButtonBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getMobileBorderColor().getRed() > 200 && formsHomePage.getMobileBorderColor().getBlue() < 100 && formsHomePage.getMobileBorderColor().getGreen() < 100, "The color is incorrect!" + formsHomePage.getMobileBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getCurrentAddressBorderColor().getRed() < 150 && formsHomePage.getCurrentAddressBorderColor().getBlue() < 150 && formsHomePage.getCurrentAddressBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getCurrentAddressBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getFirstNameBorderColor().isGreen());
+        Assert.assertTrue(formsHomePage.getLastNameBorderColor().isGreen());
+        Assert.assertTrue(formsHomePage.getEmailBorderColor().isGreen());
+        Assert.assertTrue(formsHomePage.getDateOfBirthBorderColor().isGreen());
+        Assert.assertTrue(formsHomePage.getGenderMaleRadioButtonBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getGenderFemaleRadioButtonBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getGenderOtherRadioButtonBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getMobileBorderColor().isRed());
+        Assert.assertTrue(formsHomePage.getCurrentAddressBorderColor().isGreen());
 
         formsHomePage
                 .inputUserEmail("randomString");
 
-        System.out.println(formsHomePage.getEmailBorderColor().toString());
-        Assert.assertTrue(formsHomePage.getEmailBorderColor().getRed() < 150 && formsHomePage.getEmailBorderColor().getBlue() < 150 && formsHomePage.getEmailBorderColor().getGreen() > 150, "The color is incorrect!" + formsHomePage.getEmailBorderColor().toString());
+        Assert.assertTrue(formsHomePage.getEmailBorderColor().isGreen());
 
     }
 

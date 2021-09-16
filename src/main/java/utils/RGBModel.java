@@ -36,6 +36,23 @@ public class RGBModel {
         this.blue = blue;
     }
 
+    public Boolean isRed() {
+        return getRed() > 200 && getGreen() < 100 && getBlue() < 100;
+    }
+
+    public Boolean isGray() {
+        return getRed() > 200 && getGreen() > 200 && getBlue() > 200;
+    }
+
+    public Boolean isBlack() {
+        return getRed() < 50 && getGreen() < 50 && getBlue() < 50;
+    }
+
+    public Boolean isGreen() {
+        return getRed() < 150 && getGreen() > 150 && getBlue() < 150;
+    }
+
+
     @Override
     public String toString() {
         return "RGBModel{" +
