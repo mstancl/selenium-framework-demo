@@ -7,6 +7,7 @@ import org.testng.asserts.SoftAssert;
 import pages.forms.FormsHomePage;
 import pages.home.HomePage;
 import utils.DateHelpers;
+import utils.RGBModel;
 
 public class FormsTestSuite extends BaseSuite {
 
@@ -41,7 +42,7 @@ public class FormsTestSuite extends BaseSuite {
                 .inputFirstName("Mike")
                 .inputLastName("Toast")
                 .clickOnMaleGenderRadioButton()
-                .inputUserNumber("1234567890")
+                .inputMobileNumber("1234567890")
                 .clickOnSubmitButton();
 
         SoftAssert softAssert = new SoftAssert();
@@ -73,20 +74,80 @@ public class FormsTestSuite extends BaseSuite {
                 .inputLastName("Tester")
                 .clickOnSubmitButton();
 
-        Assert.assertTrue(formsHomePage.getFirstNameBorderColor().isGreen());
-        Assert.assertTrue(formsHomePage.getLastNameBorderColor().isGreen());
-        Assert.assertTrue(formsHomePage.getEmailBorderColor().isGreen());
-        Assert.assertTrue(formsHomePage.getDateOfBirthBorderColor().isGreen());
-        Assert.assertTrue(formsHomePage.getGenderMaleRadioButtonBorderColor().isRed());
-        Assert.assertTrue(formsHomePage.getGenderFemaleRadioButtonBorderColor().isRed());
-        Assert.assertTrue(formsHomePage.getGenderOtherRadioButtonBorderColor().isRed());
-        Assert.assertTrue(formsHomePage.getMobileBorderColor().isRed());
-        Assert.assertTrue(formsHomePage.getCurrentAddressBorderColor().isGreen());
+        RGBModel firstNameBorderColor = formsHomePage.getFirstNameBorderColor();
+        RGBModel lastNameBorderColor = formsHomePage.getLastNameBorderColor();
+        RGBModel emailBorderColor = formsHomePage.getEmailBorderColor();
+        RGBModel dateOfBirthBorderColor = formsHomePage.getDateOfBirthBorderColor();
+        RGBModel genderMaleRadioButtonBorderColor = formsHomePage.getGenderMaleRadioButtonBorderColor();
+        RGBModel genderFemaleRadioButtonBorderColor = formsHomePage.getGenderFemaleRadioButtonBorderColor();
+        RGBModel genderOtherRadioButtonBorderColor = formsHomePage.getGenderOtherRadioButtonBorderColor();
+        RGBModel mobileBorderColor = formsHomePage.getMobileBorderColor();
+        RGBModel currentAddressBorderColor = formsHomePage.getCurrentAddressBorderColor();
+
+        Assert.assertTrue(firstNameBorderColor.isGreen(), "The color was incorrect! " + firstNameBorderColor.toString());
+        Assert.assertTrue(lastNameBorderColor.isGreen(), "The color was incorrect! " + lastNameBorderColor.toString());
+        Assert.assertTrue(emailBorderColor.isGreen(), "The color was incorrect! " + emailBorderColor.toString());
+        Assert.assertTrue(dateOfBirthBorderColor.isGreen(), "The color was incorrect! " + dateOfBirthBorderColor.toString());
+        Assert.assertTrue(genderMaleRadioButtonBorderColor.isRed(), "The color was incorrect! " + genderMaleRadioButtonBorderColor.toString());
+        Assert.assertTrue(genderFemaleRadioButtonBorderColor.isRed(), "The color was incorrect! " + genderFemaleRadioButtonBorderColor.toString());
+        Assert.assertTrue(genderOtherRadioButtonBorderColor.isRed(), "The color was incorrect! " + genderOtherRadioButtonBorderColor.toString());
+        Assert.assertTrue(mobileBorderColor.isRed(), "The color was incorrect! " + mobileBorderColor.toString());
+        Assert.assertTrue(currentAddressBorderColor.isGreen(), "The color was incorrect! " + currentAddressBorderColor.toString());
 
         formsHomePage
-                .inputUserEmail("randomString");
+                .inputUserEmail("randomString")
+                .clickOnSubmitButton();
+        RGBModel emailBorderIncorrect = formsHomePage.getEmailBorderColor();
+        Assert.assertTrue(emailBorderIncorrect.isRed(), "The color was incorrect! " + emailBorderIncorrect.toString());
 
-        Assert.assertTrue(formsHomePage.getEmailBorderColor().isGreen());
+        formsHomePage
+                .inputUserEmail("randomString@domain.com")
+                .clickOnSubmitButton();
+        RGBModel emailBorderCorrect = formsHomePage.getEmailBorderColor();
+        Assert.assertTrue(emailBorderCorrect.isGreen(), "The color was incorrect! " + emailBorderCorrect.toString());
+
+        formsHomePage
+                .inputMobileNumber("123456789")
+                .clickOnSubmitButton();
+        RGBModel mobileBorderIncorrect = formsHomePage.getMobileBorderColor();
+        Assert.assertTrue(mobileBorderIncorrect.isRed(), "The color was incorrect! " + mobileBorderIncorrect.toString());
+
+        formsHomePage
+                .inputMobileNumber("1234567890")
+                .clickOnSubmitButton();
+        RGBModel mobileBorderCorrect = formsHomePage.getMobileBorderColor();
+        Assert.assertTrue(mobileBorderCorrect.isGreen(), "The color was incorrect! " + mobileBorderCorrect.toString());
+
+        String subjectsValue = formsHomePage
+                .inputSubjects("testing")
+                .clickOnSubmitButton()
+                .getSubjects();
+
+        Assert.assertEquals(subjectsValue, "", "Subjects field is not empty! Found : [" + subjectsValue + "]");
+
+
+        formsHomePage
+                .inputSubjects("a");
+
+        Assert.assertTrue(formsHomePage.isSubjectDisplayed("Maths"));
+        Assert.assertTrue(formsHomePage.isSubjectDisplayed("Accounting"));
+        Assert.assertTrue(formsHomePage.isSubjectDisplayed("Arts"));
+        Assert.assertTrue(formsHomePage.isSubjectDisplayed("Social Studies"));
+
+        formsHomePage
+                .clickOnSubject("Maths");
+
+        Assert.assertTrue(formsHomePage.isSubjectRegistered("Maths"));
+        Assert.assertTrue(formsHomePage.doesCrossNextToSubjectExist("Maths"));
+
+        formsHomePage
+                .inputSubjects("arts");
+
+        formsHomePage
+                .clickOnSubject("Arts");
+        Assert.assertTrue(formsHomePage.isSubjectRegistered("Arts"));
+        Assert.assertTrue(formsHomePage.doesCrossNextToSubjectExist("Arts"));
+
 
     }
 
