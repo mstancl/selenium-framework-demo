@@ -37,11 +37,11 @@ public class RGBModel {
     }
 
     public Boolean isRed() {
-        return getRed() > 200 && getGreen() < 100 && getBlue() < 100;
+        return getRed() > 150 && getGreen() < 100 && getBlue() < 100;
     }
 
     public Boolean isGray() {
-        return getRed() > 200 && getGreen() > 200 && getBlue() > 200;
+        return getRed() > 150 && getGreen() > 150 && getBlue() > 150;
     }
 
     public Boolean isBlack() {
@@ -49,7 +49,7 @@ public class RGBModel {
     }
 
     public Boolean isGreen() {
-        return getRed() < 150 && getGreen() > 150 && getBlue() < 150;
+        return getRed() < 100 && getGreen() > 120 && getBlue() < 100;
     }
 
 
