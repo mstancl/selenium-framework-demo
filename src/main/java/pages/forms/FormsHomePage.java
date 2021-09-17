@@ -1,6 +1,7 @@
 package pages.forms;
 
 import driver.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -84,6 +85,55 @@ public class FormsHomePage extends BasePage {
     @FindBy(xpath = ".//div[@class='modal-title h4']")
     private WebElement titleAfterSubmit_label;
 
+    @FindBy(id = "subjectsInput")
+    private WebElement subjects_textField;
+
+
+    public FormsHomePage clickOnSubjectsField() {
+        click(subjects_textField);
+        return this;
+    }
+
+    public FormsHomePage clickOnSubject(String subjectName) {
+        DriverManager.getDriver().findElement(By.xpath(".//div[@id='subjectsContainer']//div[text()='" + subjectName + "']")).click();
+        return this;
+    }
+
+    public Boolean isSubjectDisplayed(String subjectName) {
+        try {
+            WebElement webElement = DriverManager.getDriver().findElement(By.xpath(".//div[@id='subjectsContainer']//div[text()='" + subjectName + "']"));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean isSubjectRegistered(String subjectName) {
+        try {
+            WebElement webElement = DriverManager.getDriver().findElement(By.xpath(".//div[@class='css-12jo7m5 subjects-auto-complete__multi-value__label'][text()='" + subjectName + "']"));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Boolean doesCrossNextToSubjectExist(String subjectName) {
+        try {
+            WebElement webElement = DriverManager.getDriver().findElement(By.xpath(".//div[@class='css-12jo7m5 subjects-auto-complete__multi-value__label'][text()='" + subjectName + "']/following-sibling::div[@class='css-xb97g8 subjects-auto-complete__multi-value__remove']"));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getSubjects() {
+        return getAttribute(subjects_textField, "value");
+    }
+
+    public FormsHomePage inputSubjects(String input) {
+        enterInput(subjects_textField, input);
+        return this;
+    }
 
     public String getSubHeader() {
         return read(subHeader_label);
@@ -108,7 +158,7 @@ public class FormsHomePage extends BasePage {
         return this;
     }
 
-    public String getFirstName(){
+    public String getFirstName() {
         return read(firstName_textField);
     }
 
@@ -117,7 +167,7 @@ public class FormsHomePage extends BasePage {
         return this;
     }
 
-    public String getLastName(){
+    public String getLastName() {
         return read(lastName_textField);
     }
 
@@ -126,11 +176,12 @@ public class FormsHomePage extends BasePage {
         return this;
     }
 
-    public FormsHomePage inputUserNumber(String input) {
+    public FormsHomePage inputMobileNumber(String input) {
         enterInput(userNumber_textField, input);
         return this;
     }
-    public String getUserNumber(){
+
+    public String getUserNumber() {
         return read(userNumber_textField);
     }
 
@@ -196,7 +247,7 @@ public class FormsHomePage extends BasePage {
         int counter = 0;
         // wait while fields are gray. This means they have not been submitted yet. There is no other way
         // timeout if the wait takes longer than the element.wait.timeout property
-        while ((getFirstNameBorderColor().getRed() > 200 && getFirstNameBorderColor().getGreen() > 100 && getFirstNameBorderColor().getBlue() > 100) && counter < Integer.parseInt(PropertiesManager.getProperty("element.wait.timeout")) * 10) {
+        while (getFirstNameBorderColor().isGray() && counter < Integer.parseInt(PropertiesManager.getProperty("element.wait.timeout")) * 10) {
             Utilities.sleep(100);
             counter++;
         }
