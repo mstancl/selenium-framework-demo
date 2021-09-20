@@ -2,14 +2,12 @@ package driver;
 
 public class BrowserInstance {
 
+    private String browserName;
+    private String browserLocation;
     public BrowserInstance(String browserName, String browserLocation) {
         this.browserName = browserName;
         this.browserLocation = browserLocation;
     }
-
-    private String browserName;
-    private String browserLocation;
-
 
     public String getBrowserName() {
         return browserName;
