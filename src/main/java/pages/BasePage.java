@@ -6,6 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 import utils.PageWait;
 
@@ -23,6 +24,19 @@ public class BasePage {
         PageWait.waitForWebElementToLoad(webElement);
         PageWait.waitForDocumentReadyState();
         webElement.click();
+        PageWait.waitForDocumentReadyState();
+    }
+
+    protected void selectDropdown(WebElement webElement, String option) {
+
+        JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView()", webElement);
+
+
+        PageWait.waitForWebElementToLoad(webElement);
+        PageWait.waitForDocumentReadyState();
+        Select select = new Select(webElement);
+        select.selectByVisibleText(option);
         PageWait.waitForDocumentReadyState();
     }
 
@@ -88,4 +102,6 @@ public class BasePage {
         }
         softAssert.assertAll();
     }
+
+
 }
