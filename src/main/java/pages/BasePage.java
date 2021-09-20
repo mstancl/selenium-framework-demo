@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
@@ -26,6 +27,18 @@ public class BasePage {
         webElement.click();
         PageWait.waitForDocumentReadyState();
     }
+
+    protected void moveAndClick(WebElement webElement) {
+
+        JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView()", webElement);
+
+        PageWait.waitForDocumentReadyState();
+        Actions actions = new Actions(DriverManager.getDriver());
+        actions.moveToElement(webElement).click().perform();
+        PageWait.waitForDocumentReadyState();
+    }
+
 
     protected void selectDropdown(WebElement webElement, String option) {
 
@@ -73,10 +86,21 @@ public class BasePage {
         return webElement.getAttribute(attribute);
     }
 
-    protected boolean isElementPresent(WebElement webElement) {
+    protected boolean isElementPresentAndClickable(WebElement webElement) {
         PageWait.waitForDocumentReadyState();
         try {
             PageWait.waitForWebElementToLoad(0, webElement);
+            return true;
+        } catch (TimeoutException | NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    protected boolean isElementPresent(WebElement webElement) {
+        PageWait.waitForDocumentReadyState();
+        try {
+            Actions actions = new Actions(DriverManager.getDriver());
+            actions.moveToElement(webElement).perform();
             return true;
         } catch (TimeoutException | NoSuchElementException e) {
             return false;
@@ -88,7 +112,7 @@ public class BasePage {
         SoftAssert softAssert = new SoftAssert();
 
         for (WebElement element : elements) {
-            softAssert.assertTrue(!isElementPresent(element));
+            softAssert.assertTrue(!isElementPresentAndClickable(element));
         }
         softAssert.assertAll();
     }
@@ -98,7 +122,7 @@ public class BasePage {
         SoftAssert softAssert = new SoftAssert();
 
         for (WebElement element : elements) {
-            softAssert.assertTrue(isElementPresent(element));
+            softAssert.assertTrue(isElementPresentAndClickable(element));
         }
         softAssert.assertAll();
     }
