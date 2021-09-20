@@ -14,11 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-
 class ExtentManager {
-    private static final String REPORT_FOLDER = "test-output" + System.getProperty("file.separator") + "extent" + System.getProperty("file.separator");
-    private static final String REPORT_CONFIG = "extent.xml";
-    private static final String REPORT_NAME = "extent.html";
     public static final List<Status> statusHierarchy = Arrays.asList(
             Status.FATAL,
             Status.FAIL,
@@ -29,6 +25,9 @@ class ExtentManager {
             Status.DEBUG,
             Status.INFO
     );
+    private static final String REPORT_FOLDER = "test-output" + System.getProperty("file.separator") + "extent" + System.getProperty("file.separator");
+    private static final String REPORT_CONFIG = "extent.xml";
+    private static final String REPORT_NAME = "extent.html";
     private static ExtentReports extent;
 
     static ExtentReports getInstance() {
@@ -75,7 +74,7 @@ class ExtentManager {
                 htmlReporter.loadXMLConfig(reportPath + configFile);
             }
         } catch (IOException e) {
-           // log.error("Exception while copying report config file: {}", e.getLocalizedMessage(), e);
+            // log.error("Exception while copying report config file: {}", e.getLocalizedMessage(), e);
         }
 
         return htmlReporter;
