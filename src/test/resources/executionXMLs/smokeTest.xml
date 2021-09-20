@@ -4,12 +4,13 @@
 <suite name="Elements test suite" parallel="tests" thread-count="2">
     <test name="elements test suite" enabled="true">
         <classes>
-            <class name="com.mstancl.regressionSuites.ElementsTestSuite"/>
+            <class name="com.mstancl.regressionSuites.elements.TextBoxTestSuite"/>
+            <class name="com.mstancl.regressionSuites.elements.CheckBoxTestSuite"/>
         </classes>
     </test>
     <test name="forms test suite" enabled="true">
         <classes>
-            <class name="com.mstancl.regressionSuites.FormsTestSuite"/>
+            <class name="com.mstancl.regressionSuites.forms.FormsTestSuite"/>
         </classes>
     </test>
 </suite>
