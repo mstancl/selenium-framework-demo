@@ -10,7 +10,7 @@ public class DateHelpers {
         return LocalDate.now().format(formatter);
     }
 
-    public static String getCurrentDateMMMonthNameYYYY() {
+    public static String getCurrentDateMMMonthNameYYYYShort() {
 
         String monthName = null;
 
@@ -55,6 +55,62 @@ public class DateHelpers {
         }
 
         return LocalDate.now().getDayOfMonth() + " " + monthName + " " + LocalDate.now().getYear();
+
+    }
+
+    public static int getCurrentDay() {
+        return LocalDate.now().getDayOfMonth();
+    }
+
+    public static int getCurrentYear() {
+        return LocalDate.now().getYear();
+    }
+
+    public static String getCurrentMonthName() {
+
+        String monthName = null;
+
+        switch (LocalDate.now().getMonth()) {
+            case JANUARY:
+                monthName = "January";
+                break;
+            case FEBRUARY:
+                monthName = "February";
+                break;
+            case MARCH:
+                monthName = "March";
+                break;
+            case APRIL:
+                monthName = "April";
+                break;
+            case MAY:
+                monthName = "May";
+                break;
+            case JUNE:
+                monthName = "June";
+                break;
+            case JULY:
+                monthName = "July";
+                break;
+            case AUGUST:
+                monthName = "August";
+                break;
+            case SEPTEMBER:
+                monthName = "September";
+                break;
+            case OCTOBER:
+                monthName = "October";
+                break;
+            case NOVEMBER:
+                monthName = "November";
+                break;
+            case DECEMBER:
+                monthName = "December";
+                break;
+
+        }
+
+        return monthName;
 
     }
 
