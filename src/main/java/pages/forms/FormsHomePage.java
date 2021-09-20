@@ -70,6 +70,9 @@ public class FormsHomePage extends BasePage {
     @FindBy(xpath = ".//td[text()='Student Name']/following-sibling::td")
     private WebElement studentNameAfterSubmit_label;
 
+    @FindBy(xpath = ".//td[text()='Date of Birth']/following-sibling::td")
+    private WebElement dateOfBirthAfterSubmit_label;
+
     @FindBy(xpath = ".//td[text()='Student Email']/following-sibling::td")
     private WebElement studentEmailAfterSubmit_label;
 
@@ -88,6 +91,37 @@ public class FormsHomePage extends BasePage {
     @FindBy(id = "subjectsInput")
     private WebElement subjects_textField;
 
+    @FindBy(xpath = ".//div[@class='react-datepicker__month-container']")
+    private WebElement datePicker_container;
+
+    @FindBy(xpath = ".//select[@class='react-datepicker__month-select']")
+    private WebElement datePickerMonth_select;
+
+    @FindBy(xpath = ".//select[@class='react-datepicker__year-select']")
+    private WebElement datePickerYear_select;
+
+
+    public FormsHomePage selectMonthInDatePicker(String month) {
+        selectDropdown(datePickerMonth_select, month);
+        return this;
+    }
+
+    public FormsHomePage selectYearInDatePicker(String month) {
+        selectDropdown(datePickerYear_select, month);
+        return this;
+    }
+
+    public FormsHomePage selectDayInDateCalendar(String day) {
+        if (day.length() == 1) {
+            day = "0" + day;
+        }
+        click(DriverManager.getDriver().findElement(By.xpath(".//div[@class='react-datepicker__day react-datepicker__day--0" + day + "']")));
+        return this;
+    }
+
+    public Boolean isDatePickerPresent() {
+        return isElementPresent(datePicker_container);
+    }
 
     public FormsHomePage clickOnSubjectsField() {
         click(subjects_textField);
@@ -126,6 +160,12 @@ public class FormsHomePage extends BasePage {
         }
     }
 
+    public FormsHomePage clickCrossNextToSubject(String subjectName) {
+        DriverManager.getDriver().findElement(By.xpath(".//div[@class='css-12jo7m5 subjects-auto-complete__multi-value__label'][text()='" + subjectName + "']/following-sibling::div[@class='css-xb97g8 subjects-auto-complete__multi-value__remove']")).click();
+        return this;
+
+    }
+
     public String getSubjects() {
         return getAttribute(subjects_textField, "value");
     }
@@ -147,6 +187,12 @@ public class FormsHomePage extends BasePage {
         enterInput(dateOfBirth_textField, input);
         return this;
     }
+
+    public FormsHomePage clickOnDateOfBirth() {
+        click(dateOfBirth_textField);
+        return this;
+    }
+
 
     public FormsHomePage clickOnPracticeFormButton() {
         click(practiceForm_button);
@@ -251,6 +297,7 @@ public class FormsHomePage extends BasePage {
             Utilities.sleep(100);
             counter++;
         }
+        Utilities.sleep(200); //unfortunately have to sleep since I have no other way how to check if the colors have been changed or not
         return this;
     }
 
@@ -262,6 +309,10 @@ public class FormsHomePage extends BasePage {
 
     public String getStudentNameAfterSubmit() {
         return read(studentNameAfterSubmit_label);
+    }
+
+    public String getDateOfBirthAfterSubmit() {
+        return read(dateOfBirthAfterSubmit_label);
     }
 
     public String getStudentEmailAfterSubmit() {
