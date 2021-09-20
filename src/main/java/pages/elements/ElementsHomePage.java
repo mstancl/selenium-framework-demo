@@ -9,6 +9,27 @@ import utils.PageWait;
 public class ElementsHomePage extends BasePage {
 
 
+    @FindBy(xpath = ".//div[@class='main-header']")
+    private WebElement mainHeader_label;
+    @FindBy(xpath = ".//span[@class='text'][text()='Text Box']")
+    private WebElement textBox_button;
+    @FindBy(xpath = ".//span[@class='text'][text()='Check Box']")
+    private WebElement checkBox_button;
+    @FindBy(xpath = ".//span[@class='text'][text()='Radio Button']")
+    private WebElement radioButton_button;
+    @FindBy(xpath = ".//span[@class='text'][text()='Web Tables']")
+    private WebElement webTables_button;
+    @FindBy(xpath = ".//span[@class='text'][text()='Buttons']")
+    private WebElement buttons_button;
+    @FindBy(xpath = ".//span[@class='text'][text()='Links']")
+    private WebElement links_button;
+    @FindBy(xpath = ".//span[@class='text'][text()='Broken Links - Images']")
+    private WebElement brokenLinksImages_button;
+    @FindBy(xpath = ".//span[@class='text'][text()='Upload and Download']")
+    private WebElement uploadAndDownload_button;
+    @FindBy(xpath = ".//span[@class='text'][text()='Dynamic Properties']")
+    private WebElement dynamicProperties_button;
+
     public ElementsHomePage() {
         super();
         PageWait.waitForWebElementToLoad(textBox_button,
@@ -20,40 +41,9 @@ public class ElementsHomePage extends BasePage {
                 brokenLinksImages_button,
                 uploadAndDownload_button,
                 dynamicProperties_button);
-        Assert.assertEquals(read(mainHeader_label),"Elements");
+        Assert.assertEquals(read(mainHeader_label), "Elements");
 
     }
-
-    @FindBy(xpath = ".//div[@class='main-header']")
-    private WebElement mainHeader_label;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Text Box']")
-    private WebElement textBox_button;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Check Box']")
-    private WebElement checkBox_button;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Radio Button']")
-    private WebElement radioButton_button;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Web Tables']")
-    private WebElement webTables_button;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Buttons']")
-    private WebElement buttons_button;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Links']")
-    private WebElement links_button;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Broken Links - Images']")
-    private WebElement brokenLinksImages_button;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Upload and Download']")
-    private WebElement uploadAndDownload_button;
-
-    @FindBy(xpath = ".//span[@class='text'][text()='Dynamic Properties']")
-    private WebElement dynamicProperties_button;
-
 
     public TextBoxPage clickOnTextBoxButton() {
         click(textBox_button);
