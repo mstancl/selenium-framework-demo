@@ -33,7 +33,7 @@ public class PageWait {
         }
     }
 
-    public static void waitForDocumentReadyState(){
+    public static void waitForDocumentReadyState() {
         new WebDriverWait(DriverManager.getDriver(), 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
     }
