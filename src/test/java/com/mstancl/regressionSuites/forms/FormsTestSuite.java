@@ -186,8 +186,60 @@ public class FormsTestSuite extends BaseSuite {
     }
 
 
+    @Test(description = "003. Form field validations - other elements")
+    public void formFieldValidationsOtherElements() {
+        FormsHomePage formsHomePage = new HomePage()
+                .clickOnFormsTile()
+                .clickOnPracticeFormButton();
+
+        Assert.assertTrue(formsHomePage.isMaleGenderRadioPresent());
+        Assert.assertTrue(formsHomePage.isFemaleGenderRadioPresent());
+        Assert.assertTrue(formsHomePage.isOtherGenderRadioPresent());
+
+        formsHomePage
+                .clickOnMaleGenderRadioButton()
+                .clickOnFemaleGenderRadioButton()
+                .clickOnOtherGenderRadioButton()
+                .inputCurrentAddress("Tester address 123")
+                .inputFirstName("Dummy")
+                .inputLastName("Tester")
+                .inputMobileNumber("1234567890")
+                .clickOnSubmitButton();
+
+        Assert.assertEquals(formsHomePage.getStudentGenderAfterSubmit(), "Other");
+
+        formsHomePage
+                .clickOnCloseButton()
+                .clickOnMaleGenderRadioButton()
+                .clickOnFemaleGenderRadioButton()
+                .clickOnOtherGenderRadioButton()
+                .inputCurrentAddress("Tester address 123")
+                .inputFirstName("Dummy")
+                .inputLastName("Tester")
+                .inputMobileNumber("1234567890")
+                .clickOnSportsHobbyCheckBox()
+                .clickOnReadingHobbyCheckBox()
+                .clickOnMusicHobbyCheckBox()
+                .clickOnSubmitButton();
+
+        Assert.assertEquals(formsHomePage.getHobbiesAfterSubmit(), "Sports, Reading, Music");
+
+        formsHomePage
+                .clickOnSubmitButtonAfterSubmit()
+                .clickOnReadingHobbyCheckBox()
+                .clickOnSubmitButton();
+
+        Assert.assertEquals(formsHomePage.getHobbiesAfterSubmit(), "Sports, Music");
+
+        formsHomePage
+                .clickOnSubmitButtonAfterSubmit()
+                .clickOnMusicHobbyCheckBox()
+                .clickOnSubmitButton();
+
+        Assert.assertEquals(formsHomePage.getHobbiesAfterSubmit(), "Sports");
 
 
+    }
 
 
 

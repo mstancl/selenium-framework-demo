@@ -3,7 +3,6 @@ package pages.forms;
 import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pages.BasePage;
@@ -64,6 +63,9 @@ public class FormsHomePage extends BasePage {
     @FindBy(id = "submit")
     private WebElement submit_button;
 
+    @FindBy(xpath = ".//div[@role='document']")
+    private WebElement documentWindow_window;
+
     @FindBy(id = "closeLargeModal")
     private WebElement close_button;
 
@@ -78,6 +80,9 @@ public class FormsHomePage extends BasePage {
 
     @FindBy(xpath = ".//td[text()='Gender']/following-sibling::td")
     private WebElement genderAfterSubmit_label;
+
+    @FindBy(xpath = ".//td[text()='Hobbies']/following-sibling::td")
+    private WebElement hobbiesAfterSubmit_label;
 
     @FindBy(xpath = ".//td[text()='Mobile']/following-sibling::td")
     private WebElement mobileAfterSubmit_label;
@@ -100,6 +105,35 @@ public class FormsHomePage extends BasePage {
     @FindBy(xpath = ".//select[@class='react-datepicker__year-select']")
     private WebElement datePickerYear_select;
 
+    @FindBy(id = "hobbies-checkbox-1")
+    private WebElement sportsCheckBoxHobbies_checkbox;
+
+    @FindBy(id = "hobbies-checkbox-2")
+    private WebElement readingCheckBoxHobbies_checkbox;
+
+    @FindBy(id = "hobbies-checkbox-3")
+    private WebElement musicCheckBoxHobbies_checkbox;
+
+
+    public FormsHomePage clickOutsideTheSubmitWindow() {
+        click(documentWindow_window);
+        return this;
+    }
+
+    public FormsHomePage clickOnSportsHobbyCheckBox() {
+        moveAndClick(sportsCheckBoxHobbies_checkbox);
+        return this;
+    }
+
+    public FormsHomePage clickOnReadingHobbyCheckBox() {
+        moveAndClick(readingCheckBoxHobbies_checkbox);
+        return this;
+    }
+
+    public FormsHomePage clickOnMusicHobbyCheckBox() {
+        moveAndClick(musicCheckBoxHobbies_checkbox);
+        return this;
+    }
 
     public FormsHomePage selectMonthInDatePicker(String month) {
         selectDropdown(datePickerMonth_select, month);
@@ -120,7 +154,7 @@ public class FormsHomePage extends BasePage {
     }
 
     public Boolean isDatePickerPresent() {
-        return isElementPresent(datePicker_container);
+        return isElementPresentAndClickable(datePicker_container);
     }
 
     public FormsHomePage clickOnSubjectsField() {
@@ -237,17 +271,30 @@ public class FormsHomePage extends BasePage {
     }
 
     public FormsHomePage clickOnOtherGenderRadioButton() {
-        Actions actions = new Actions(DriverManager.getDriver());
-        actions.moveToElement(genderOther_radioButton).click().perform();
-
+        moveAndClick(genderOther_radioButton);
         return this;
     }
 
     public FormsHomePage clickOnMaleGenderRadioButton() {
-        Actions actions = new Actions(DriverManager.getDriver());
-        actions.moveToElement(genderMale_radioButton).click().perform();
-
+        moveAndClick(genderMale_radioButton);
         return this;
+    }
+
+    public FormsHomePage clickOnFemaleGenderRadioButton() {
+        moveAndClick(genderFemale_radioButton);
+        return this;
+    }
+
+    public Boolean isMaleGenderRadioPresent() {
+        return (isElementPresent(genderMale_radioButton) && isElementPresent(genderMale_label));
+    }
+
+    public Boolean isFemaleGenderRadioPresent() {
+        return (isElementPresent(genderFemale_radioButton) && isElementPresent(genderFemale_label));
+    }
+
+    public Boolean isOtherGenderRadioPresent() {
+        return (isElementPresent(genderOther_radioButton) && isElementPresent(genderOther_label));
     }
 
     public RGBModel getFirstNameBorderColor() {
@@ -300,6 +347,10 @@ public class FormsHomePage extends BasePage {
         Utilities.sleep(200); //unfortunately have to sleep since I have no other way how to check if the colors have been changed or not
         return this;
     }
+    public FormsHomePage clickOnSubmitButtonAfterSubmit() {
+       moveAndClick(submit_button);
+        return this;
+    }
 
 
     public FormsHomePage clickOnCloseButton() {
@@ -321,6 +372,10 @@ public class FormsHomePage extends BasePage {
 
     public String getStudentGenderAfterSubmit() {
         return read(genderAfterSubmit_label);
+    }
+
+    public String getHobbiesAfterSubmit() {
+        return read(hobbiesAfterSubmit_label);
     }
 
     public String getStudentMobileAfterSubmit() {

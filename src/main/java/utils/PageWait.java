@@ -10,6 +10,7 @@ import properties.PropertiesManager;
 import java.util.Objects;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class PageWait {
 
@@ -23,6 +24,12 @@ public class PageWait {
     public static void waitForWebElementToLoad(int seconds, WebElement... elements) {
         for (WebElement element : elements) {
             new WebDriverWait(DriverManager.getDriver(), seconds).until(elementToBeClickable(element));
+        }
+    }
+
+    public static void waitForWebElementToBeDisplayed(int seconds, WebElement... elements) {
+        for (WebElement element : elements) {
+            new WebDriverWait(DriverManager.getDriver(), seconds).until(visibilityOf(element));
         }
     }
 
