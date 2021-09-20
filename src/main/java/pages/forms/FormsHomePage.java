@@ -12,108 +12,77 @@ import utils.Utilities;
 
 public class FormsHomePage extends BasePage {
 
-    public FormsHomePage() {
-        super();
-        Assert.assertEquals(read(mainHeader_label), "Forms");
-    }
-
     @FindBy(xpath = ".//div[@class='practice-form-wrapper']/h5")
     private WebElement subHeader_label;
-
     @FindBy(xpath = ".//div[@class='main-header']")
     private WebElement mainHeader_label;
-
     @FindBy(xpath = ".//span[@class='text'][text()='Practice Form']")
     private WebElement practiceForm_button;
-
     @FindBy(id = "firstName")
     private WebElement firstName_textField;
-
     @FindBy(id = "lastName")
     private WebElement lastName_textField;
-
     @FindBy(id = "userEmail")
     private WebElement userEmail_textField;
-
     @FindBy(id = "userNumber")
     private WebElement userNumber_textField;
-
     @FindBy(id = "currentAddress")
     private WebElement currentAddress_textField;
-
     @FindBy(id = "dateOfBirthInput")
     private WebElement dateOfBirth_textField;
-
-
     @FindBy(xpath = ".//input[@name='gender'][@value='Male']")
     private WebElement genderMale_radioButton;
     @FindBy(xpath = ".//label[@for='gender-radio-1']")
     private WebElement genderMale_label;
-
     @FindBy(xpath = ".//input[@name='gender'][@value='Female']")
     private WebElement genderFemale_radioButton;
     @FindBy(xpath = ".//label[@for='gender-radio-2']")
     private WebElement genderFemale_label;
-
     @FindBy(xpath = ".//input[@name='gender'][@value='Other']")
     private WebElement genderOther_radioButton;
     @FindBy(xpath = ".//label[@for='gender-radio-3']")
     private WebElement genderOther_label;
-
     @FindBy(id = "submit")
     private WebElement submit_button;
-
     @FindBy(xpath = ".//div[@role='document']")
     private WebElement documentWindow_window;
-
     @FindBy(id = "closeLargeModal")
     private WebElement close_button;
-
     @FindBy(xpath = ".//td[text()='Student Name']/following-sibling::td")
     private WebElement studentNameAfterSubmit_label;
-
     @FindBy(xpath = ".//td[text()='Date of Birth']/following-sibling::td")
     private WebElement dateOfBirthAfterSubmit_label;
-
     @FindBy(xpath = ".//td[text()='Student Email']/following-sibling::td")
     private WebElement studentEmailAfterSubmit_label;
-
     @FindBy(xpath = ".//td[text()='Gender']/following-sibling::td")
     private WebElement genderAfterSubmit_label;
-
     @FindBy(xpath = ".//td[text()='Hobbies']/following-sibling::td")
     private WebElement hobbiesAfterSubmit_label;
-
     @FindBy(xpath = ".//td[text()='Mobile']/following-sibling::td")
     private WebElement mobileAfterSubmit_label;
-
     @FindBy(xpath = ".//td[text()='Address']/following-sibling::td")
     private WebElement addressAfterSubmit_label;
-
     @FindBy(xpath = ".//div[@class='modal-title h4']")
     private WebElement titleAfterSubmit_label;
-
     @FindBy(id = "subjectsInput")
     private WebElement subjects_textField;
-
     @FindBy(xpath = ".//div[@class='react-datepicker__month-container']")
     private WebElement datePicker_container;
-
     @FindBy(xpath = ".//select[@class='react-datepicker__month-select']")
     private WebElement datePickerMonth_select;
-
     @FindBy(xpath = ".//select[@class='react-datepicker__year-select']")
     private WebElement datePickerYear_select;
-
     @FindBy(id = "hobbies-checkbox-1")
     private WebElement sportsCheckBoxHobbies_checkbox;
-
     @FindBy(id = "hobbies-checkbox-2")
     private WebElement readingCheckBoxHobbies_checkbox;
-
     @FindBy(id = "hobbies-checkbox-3")
     private WebElement musicCheckBoxHobbies_checkbox;
 
+    public FormsHomePage() {
+        super();
+        Assert.assertEquals(read(mainHeader_label), "Forms");
+    }
 
     public FormsHomePage clickOutsideTheSubmitWindow() {
         click(documentWindow_window);
@@ -347,8 +316,10 @@ public class FormsHomePage extends BasePage {
         Utilities.sleep(200); //unfortunately have to sleep since I have no other way how to check if the colors have been changed or not
         return this;
     }
+
     public FormsHomePage clickOnSubmitButtonAfterSubmit() {
-       moveAndClick(submit_button);
+        moveAndClick(submit_button);
+        Utilities.sleep(200);
         return this;
     }
 
