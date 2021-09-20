@@ -1,11 +1,13 @@
 package com.mstancl.regressionSuites.forms;
 
 import com.mstancl.BaseSuite;
+import driver.DriverManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.forms.FormsHomePage;
 import pages.home.HomePage;
+import properties.PropertiesManager;
 import utils.DateHelpers;
 import utils.RGBModel;
 
@@ -19,7 +21,7 @@ public class FormsTestSuite extends BaseSuite {
                 .clickOnPracticeFormButton();
 
         Assert.assertEquals(formsHomePage.getSubHeader(), "Student Registration Form");
-        Assert.assertEquals(formsHomePage.getDateOfBirth(), DateHelpers.getCurrentDateMMMonthNameYYYY());
+        Assert.assertEquals(formsHomePage.getDateOfBirth(), DateHelpers.getCurrentDateMMMonthNameYYYYShort());
 
         Assert.assertTrue(formsHomePage.getFirstNameBorderColor().isGray());
         Assert.assertTrue(formsHomePage.getLastNameBorderColor().isGray());
@@ -147,6 +149,38 @@ public class FormsTestSuite extends BaseSuite {
                 .clickOnSubject("Arts");
         Assert.assertTrue(formsHomePage.isSubjectRegistered("Arts"));
         Assert.assertTrue(formsHomePage.doesCrossNextToSubjectExist("Arts"));
+
+        formsHomePage
+                .clickCrossNextToSubject("Maths")
+                .clickCrossNextToSubject("Arts");
+
+        DriverManager.getDriver().get(PropertiesManager.getProperty("sut.url") + "automation-practice-form"); // There is a defect, removing the subjects results in an empty blank page that has to be realoaded
+
+        formsHomePage.clickOnDateOfBirth();
+        Assert.assertTrue(formsHomePage.isDatePickerPresent());
+
+        formsHomePage
+                .selectMonthInDatePicker(DateHelpers.getCurrentMonthName())
+                .selectYearInDatePicker(String.valueOf(DateHelpers.getCurrentYear() + 2))
+                .selectDayInDateCalendar(String.valueOf(DateHelpers.getCurrentDay()))
+                .clickOnSubmitButton();
+        // Assert.assertTrue(formsHomePage.getDateOfBirthBorderColor().isRed(),"The date of birth border color is incorrect!");
+
+        formsHomePage
+                .inputCurrentAddress("Tester address 123")
+                .inputFirstName("Dummy")
+                .inputLastName("Tester")
+                .clickOnMaleGenderRadioButton()
+                .inputMobileNumber("1234567890")
+                .clickOnSubmitButton();
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(formsHomePage.getStudentNameAfterSubmit(), "Dummy Tester");
+        softAssert.assertEquals(formsHomePage.getStudentGenderAfterSubmit(), "Male");
+        softAssert.assertEquals(formsHomePage.getStudentMobileAfterSubmit(), "1234567890");
+        softAssert.assertEquals(formsHomePage.getDateOfBirthAfterSubmit(), DateHelpers.getCurrentDay() + " " + DateHelpers.getCurrentMonthName() + "," + (DateHelpers.getCurrentYear() + 2));
+        softAssert.assertEquals(formsHomePage.getStudentAddressAfterSubmit(), "Tester address 123");
+        softAssert.assertAll();
 
 
     }
