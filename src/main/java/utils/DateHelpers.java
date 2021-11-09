@@ -54,7 +54,7 @@ public class DateHelpers {
 
         }
 
-        return LocalDate.now().getDayOfMonth() + " " + monthName + " " + LocalDate.now().getYear();
+        return (LocalDate.now().getDayOfMonth() < 10 ? "0" + LocalDate.now().getDayOfMonth() : LocalDate.now().getDayOfMonth()) + " " + monthName + " " + LocalDate.now().getYear();
 
     }
 

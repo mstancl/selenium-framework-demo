@@ -178,7 +178,7 @@ public class FormsTestSuite extends BaseSuite {
         softAssert.assertEquals(formsHomePage.getStudentNameAfterSubmit(), "Dummy Tester");
         softAssert.assertEquals(formsHomePage.getStudentGenderAfterSubmit(), "Male");
         softAssert.assertEquals(formsHomePage.getStudentMobileAfterSubmit(), "1234567890");
-        softAssert.assertEquals(formsHomePage.getDateOfBirthAfterSubmit(), DateHelpers.getCurrentDay() + " " + DateHelpers.getCurrentMonthName() + "," + (DateHelpers.getCurrentYear() + 2));
+        softAssert.assertEquals(formsHomePage.getDateOfBirthAfterSubmit(), (DateHelpers.getCurrentDay() < 10 ? "0" + DateHelpers.getCurrentDay() : DateHelpers.getCurrentDay()) + " " + DateHelpers.getCurrentMonthName() + "," + (DateHelpers.getCurrentYear() + 2));
         softAssert.assertEquals(formsHomePage.getStudentAddressAfterSubmit(), "Tester address 123");
         softAssert.assertAll();
 
