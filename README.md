@@ -18,7 +18,7 @@ using :
   - Access to the maven repo. Works by default, only issues occur when behind proxy or VPN (https://mvnrepository.com/)
   
  
-  #####STEPS  
+  ##### STEPS  
   
   - `git clone https://github.com/mstancl/selenium-framework-demo.git`  via git bash  
     - Or you can open Intellij - File - new -> project from version control and paste the .git URL 
@@ -33,11 +33,11 @@ This will execute the smokeTest.xml suite containing all the tests.
 
 
 ## Reporting
-In progress... 
+Once the tests finish, you can find the test report under `test-output/extent.html`
  
 ## Demo web application
 Web application used for this demo is `https://demoqa.com/`  
 written by `https://www.toolsqa.com/` . Website full of very useful resources, make sure to visit them!  
 
 ## Author
-author if this demo framework - Martin Stancl. https://www.linkedin.com/in/martin-štancl-11b591108  
+author of this demo framework - Martin Stancl. https://www.linkedin.com/in/martin-štancl-11b591108  
