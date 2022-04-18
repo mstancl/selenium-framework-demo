@@ -9,7 +9,7 @@ import properties.PropertiesManager;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-@Listeners({TestListener.class})
+/*@Listeners({TestListener.class})*/
 public class BaseSuite {
 
     @BeforeSuite
