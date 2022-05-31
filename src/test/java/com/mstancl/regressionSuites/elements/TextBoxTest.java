@@ -7,7 +7,7 @@ import org.testng.asserts.SoftAssert;
 import pages.elements.TextBoxPage;
 import pages.home.HomePage;
 
-public class TextBoxTestSuite extends BaseSuite {
+public class TextBoxTest extends BaseSuite {
 
     @Test(description = "001. Verify Text Box Functionality")
     public void verifyTextBoxFunctionality() {

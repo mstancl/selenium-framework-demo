@@ -4,7 +4,7 @@
 <suite name="Elements test suite" parallel="classes">
     <test name="elements test suite" enabled="true">
         <classes>
-            <class name="com.mstancl.regressionSuites.elements.TextBoxTestSuite"/>
+            <class name="com.mstancl.regressionSuites.elements.TextBoxTest"/>
             <class name="com.mstancl.regressionSuites.elements.CheckBoxTestSuite"/>
         </classes>
     </test>
