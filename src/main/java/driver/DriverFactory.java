@@ -3,8 +3,11 @@ package driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import properties.PropertiesManager;
 
@@ -49,6 +52,33 @@ public class DriverFactory {
                     return new RemoteWebDriver(new URL(PropertiesManager.getProperty("grid.hub.url")), firefoxOptions);
                 }
                 break;
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                System.setProperty("webdriver.edge.driver", System.getenv("EDGE_WEBDRIVER"));
+                edgeOptions.addArguments("InPrivate");
+                edgeOptions.addArguments("start-maximized");
+                edgeOptions.addArguments("--window-size=1920x1080");
+
+                return new EdgeDriver(edgeOptions);
+
+            case "kobiton":
+                String kobitonServerUrl = "https://qhub_poc:d8e45b2f-8bf0-48c5-a160-5b2f658d736b@api.kobiton.com/wd/hub";
+
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setCapability("sessionName", "Automation test session");
+                capabilities.setCapability("sessionDescription", "");
+                capabilities.setCapability("deviceOrientation", "portrait");
+                capabilities.setCapability("noReset", true);
+                capabilities.setCapability("fullReset", false);
+                capabilities.setCapability("captureScreenshots", true);
+                capabilities.setCapability("browserName", "chrome");
+                capabilities.setCapability("deviceGroup", "ORGANIZATION");
+                capabilities.setCapability("deviceName", "motorola moto g(9) power");
+                capabilities.setCapability("tagName", "");
+                capabilities.setCapability("platformVersion", "11");
+                capabilities.setCapability("platformName", "Android");
+                return new RemoteWebDriver(new URL(kobitonServerUrl), capabilities);
+
         }
         throw new UnsupportedOperationException("Unsuported browser! " + browserInstance.toString());
 
