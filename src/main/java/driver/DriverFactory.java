@@ -1,5 +1,8 @@
 package driver;
 
+import driver.configurations.BrowserInstance;
+import driver.configurations.BrowserLocation;
+import driver.configurations.BrowserName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,10 +23,7 @@ public class DriverFactory {
 
     public static WebDriver createInstance() throws MalformedURLException {
 
-        String browserName = PropertiesManager.getProperty("browser.name");
-        String browserLocation = PropertiesManager.getProperty("browser.location");
-
-        BrowserInstance browserInstance = new BrowserInstance(browserName, browserLocation);
+        BrowserInstance browserInstance = new BrowserInstance(BrowserName.getBrowserName(PropertiesManager.getProperty("browser.name")), BrowserLocation.getBrowserLocation(PropertiesManager.getProperty("browser.location")));
         return createInstance(browserInstance);
     }
 
@@ -31,28 +31,28 @@ public class DriverFactory {
         Logger logger = Logger.getLogger("org.openqa.selenium.remote");
         logger.setLevel(Level.OFF);
         switch (browserInstance.getBrowserName()) {
-            case "chrome":
+            case CHROME:
                 System.setProperty("webdriver.chrome.driver", "webdriver/chromedriver.exe");
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
                 chromeOptions.addArguments("disable-infobars");
                 chromeOptions.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-                if (browserInstance.getBrowserLocation().toLowerCase().equals("local")) {
+                if (browserInstance.getBrowserLocation().equals(BrowserLocation.LOCAL)) {
                     return new ChromeDriver(chromeOptions);
-                } else if (browserInstance.getBrowserLocation().toLowerCase().equals("grid")) {
+                } else if (browserInstance.getBrowserLocation().equals(BrowserLocation.GRID)) {
                     return new RemoteWebDriver(new URL(PropertiesManager.getProperty("grid.hub.url")), chromeOptions);
                 }
                 break;
-            case "firefox":
+            case FIREFOX:
                 System.setProperty("webdriver.gecko.driver", "webdriver/geckodriver.exe");
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                if (browserInstance.getBrowserLocation().toLowerCase().equals("local")) {
+                if (browserInstance.getBrowserLocation().equals(BrowserLocation.LOCAL)) {
                     return new FirefoxDriver(firefoxOptions);
-                } else if (browserInstance.getBrowserLocation().toLowerCase().equals("grid")) {
+                } else if (browserInstance.getBrowserLocation().equals(BrowserLocation.GRID)) {
                     return new RemoteWebDriver(new URL(PropertiesManager.getProperty("grid.hub.url")), firefoxOptions);
                 }
                 break;
-            case "edge":
+            case EDGE:
                 EdgeOptions edgeOptions = new EdgeOptions();
                 System.setProperty("webdriver.edge.driver", System.getenv("EDGE_WEBDRIVER"));
                 edgeOptions.addArguments("InPrivate");
@@ -61,7 +61,7 @@ public class DriverFactory {
 
                 return new EdgeDriver(edgeOptions);
 
-            case "kobiton":
+            case KOBITON:
                 String kobitonServerUrl = "https://qhub_poc:d8e45b2f-8bf0-48c5-a160-5b2f658d736b@api.kobiton.com/wd/hub";
 
                 DesiredCapabilities capabilities = new DesiredCapabilities();
