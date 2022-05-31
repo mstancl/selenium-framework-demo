@@ -22,10 +22,10 @@ public class BasePage {
         JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
-        PageWait.waitForWebElementToLoad(webElement);
-        PageWait.waitForDocumentReadyState();
+      //  PageWait.waitForWebElementToLoad(webElement);
+       // PageWait.waitForDocumentReadyState();
         webElement.click();
-        PageWait.waitForDocumentReadyState();
+      //  PageWait.waitForDocumentReadyState();
     }
 
     protected void moveAndClick(WebElement webElement) {
@@ -33,10 +33,10 @@ public class BasePage {
         JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
-        PageWait.waitForDocumentReadyState();
+      //  PageWait.waitForDocumentReadyState();
         Actions actions = new Actions(DriverManager.getDriver());
         actions.moveToElement(webElement).click().perform();
-        PageWait.waitForDocumentReadyState();
+      //  PageWait.waitForDocumentReadyState();
     }
 
 
@@ -46,11 +46,11 @@ public class BasePage {
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
 
-        PageWait.waitForWebElementToLoad(webElement);
-        PageWait.waitForDocumentReadyState();
+        //PageWait.waitForWebElementToLoad(webElement);
+       // PageWait.waitForDocumentReadyState();
         Select select = new Select(webElement);
         select.selectByVisibleText(option);
-        PageWait.waitForDocumentReadyState();
+       // PageWait.waitForDocumentReadyState();
     }
 
     protected void enterInput(WebElement webElement, String input) {
@@ -60,11 +60,11 @@ public class BasePage {
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
 
-        PageWait.waitForWebElementToLoad(webElement);
-        PageWait.waitForDocumentReadyState();
+       // PageWait.waitForWebElementToLoad(webElement);
+       // PageWait.waitForDocumentReadyState();
         webElement.clear();
         webElement.sendKeys(input);
-        PageWait.waitForDocumentReadyState();
+       // PageWait.waitForDocumentReadyState();
     }
 
     protected String read(WebElement webElement) {
@@ -72,8 +72,8 @@ public class BasePage {
         JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
-        PageWait.waitForWebElementToLoad(webElement);
-        PageWait.waitForDocumentReadyState();
+        //PageWait.waitForWebElementToLoad(webElement);
+        //PageWait.waitForDocumentReadyState();
         return webElement.getText();
     }
 
@@ -81,15 +81,15 @@ public class BasePage {
         JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
         jse.executeScript("arguments[0].scrollIntoView()", webElement);
 
-        PageWait.waitForWebElementToLoad(webElement);
-        PageWait.waitForDocumentReadyState();
+        //PageWait.waitForWebElementToLoad(webElement);
+        //PageWait.waitForDocumentReadyState();
         return webElement.getAttribute(attribute);
     }
 
     protected boolean isElementPresentAndClickable(WebElement webElement) {
-        PageWait.waitForDocumentReadyState();
+       // PageWait.waitForDocumentReadyState();
         try {
-            PageWait.waitForWebElementToLoad(0, webElement);
+         //   PageWait.waitForWebElementToLoad(0, webElement);
             return true;
         } catch (TimeoutException | NoSuchElementException e) {
             return false;
@@ -97,7 +97,7 @@ public class BasePage {
     }
 
     protected boolean isElementPresent(WebElement webElement) {
-        PageWait.waitForDocumentReadyState();
+       // PageWait.waitForDocumentReadyState();
         try {
             Actions actions = new Actions(DriverManager.getDriver());
             actions.moveToElement(webElement).perform();
@@ -108,7 +108,7 @@ public class BasePage {
     }
 
     public void validateWebElementsAreNotVisible(WebElement... elements) {
-        PageWait.waitForDocumentReadyState();
+       // PageWait.waitForDocumentReadyState();
         SoftAssert softAssert = new SoftAssert();
 
         for (WebElement element : elements) {
@@ -118,7 +118,7 @@ public class BasePage {
     }
 
     public void validateWebElementsAreVisible(WebElement... elements) {
-        PageWait.waitForDocumentReadyState();
+       // PageWait.waitForDocumentReadyState();
         SoftAssert softAssert = new SoftAssert();
 
         for (WebElement element : elements) {

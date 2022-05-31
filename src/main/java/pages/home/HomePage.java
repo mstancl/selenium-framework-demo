@@ -25,7 +25,7 @@ public class HomePage extends BasePage {
 
     public HomePage() {
         super();
-        PageWait.waitForWebElementToLoad(elements_tile, forms_tile, alertsFrameWindows_tile, widgets_tile, interactions_tile, bookStoreApplication_tile);
+       // PageWait.waitForWebElementToLoad(elements_tile, forms_tile, alertsFrameWindows_tile, widgets_tile, interactions_tile, bookStoreApplication_tile);
     }
 
     public ElementsHomePage clickOnElementsTile() {
