@@ -77,6 +77,9 @@ public class DriverFactory {
                 capabilities.setCapability("tagName", "");
                 capabilities.setCapability("platformVersion", "11");
                 capabilities.setCapability("platformName", "Android");
+                chromeOptions = new ChromeOptions();
+                chromeOptions.setExperimentalOption("w3c", false);
+                capabilities.setCapability("chromeOptions", chromeOptions);
                 return new RemoteWebDriver(new URL(kobitonServerUrl), capabilities);
 
         }
