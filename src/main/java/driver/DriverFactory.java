@@ -3,6 +3,7 @@ package driver;
 import driver.configurations.BrowserInstance;
 import driver.configurations.BrowserLocation;
 import driver.configurations.BrowserName;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -65,6 +66,7 @@ public class DriverFactory {
                 String kobitonServerUrl = "https://qhub_poc:d8e45b2f-8bf0-48c5-a160-5b2f658d736b@api.kobiton.com/wd/hub";
 
                 DesiredCapabilities capabilities = new DesiredCapabilities();
+// The generated session will be visible to you only.
                 capabilities.setCapability("sessionName", "Automation test session");
                 capabilities.setCapability("sessionDescription", "");
                 capabilities.setCapability("deviceOrientation", "portrait");
@@ -73,14 +75,16 @@ public class DriverFactory {
                 capabilities.setCapability("captureScreenshots", true);
                 capabilities.setCapability("browserName", "chrome");
                 capabilities.setCapability("deviceGroup", "ORGANIZATION");
-                capabilities.setCapability("deviceName", "motorola moto g(9) power");
+// For deviceName, platformVersion Kobiton supports wildcard
+// character *, with 3 formats: *text, text* and *text*
+// If there is no *, Kobiton will match the exact text provided
+                capabilities.setCapability("deviceName", "Google Pixel 2 XL");
+// The tag is used for finding devices and the user can input only one tag.
+// For example, the data value will be inputted: tagName="TagName1"
                 capabilities.setCapability("tagName", "");
                 capabilities.setCapability("platformVersion", "11");
                 capabilities.setCapability("platformName", "Android");
-                chromeOptions = new ChromeOptions();
-                chromeOptions.setExperimentalOption("w3c", false);
-                capabilities.setCapability("chromeOptions", chromeOptions);
-                return new RemoteWebDriver(new URL(kobitonServerUrl), capabilities);
+                return new AndroidDriver(new URL(kobitonServerUrl), capabilities);
 
         }
         throw new UnsupportedOperationException("Unsuported browser! " + browserInstance.toString());
