@@ -16,26 +16,26 @@ public class PageWait {
 
 
     public static void waitForWebElementToLoad(WebElement... elements) {
-     /*   for (WebElement element : elements) {
+        for (WebElement element : elements) {
             new WebDriverWait(DriverManager.getDriver(), Integer.parseInt(PropertiesManager.getProperty("element.wait.timeout"))).until(elementToBeClickable(element));
-        }*/
+        }
     }
 
     public static void waitForWebElementToLoad(int seconds, WebElement... elements) {
-      /*  for (WebElement element : elements) {
+        for (WebElement element : elements) {
             new WebDriverWait(DriverManager.getDriver(), seconds).until(elementToBeClickable(element));
-        }*/
+        }
     }
 
     public static void waitForWebElementToBeDisplayed(int seconds, WebElement... elements) {
-       /* for (WebElement element : elements) {
+        for (WebElement element : elements) {
             new WebDriverWait(DriverManager.getDriver(), seconds).until(visibilityOf(element));
-        }*/
+        }
     }
 
     public static void waitForDocumentReadyState() {
-      /*  new WebDriverWait(DriverManager.getDriver(), 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));*/
+        new WebDriverWait(DriverManager.getDriver(), 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) Objects.requireNonNull(wd)).executeScript("return document.readyState").equals("complete"));
     }
 
 }

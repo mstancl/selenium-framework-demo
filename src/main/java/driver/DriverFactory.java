@@ -33,7 +33,11 @@ public class DriverFactory {
         logger.setLevel(Level.OFF);
         switch (browserInstance.getBrowserName()) {
             case CHROME:
-                System.setProperty("webdriver.chrome.driver", "webdriver/chromedriver.exe");
+                if (System.getProperty("os.name").equals("Mac OS X")) {
+                    System.setProperty("webdriver.chrome.driver", "webdriver/chromedriver");
+                } else {
+                    System.setProperty("webdriver.chrome.driver", "webdriver/chromedriver.exe");
+                }
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
                 chromeOptions.addArguments("disable-infobars");
@@ -45,7 +49,11 @@ public class DriverFactory {
                 }
                 break;
             case FIREFOX:
-                System.setProperty("webdriver.gecko.driver", "webdriver/geckodriver.exe");
+                if (System.getProperty("os.name").equals("Mac OS X")) {
+                    System.setProperty("webdriver.gecko.driver", "webdriver/geckodriver");
+                } else {
+                    System.setProperty("webdriver.gecko.driver", "webdriver/geckodriver.exe");
+                }
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 if (browserInstance.getBrowserLocation().equals(BrowserLocation.LOCAL)) {
                     return new FirefoxDriver(firefoxOptions);
@@ -55,39 +63,14 @@ public class DriverFactory {
                 break;
             case EDGE:
                 EdgeOptions edgeOptions = new EdgeOptions();
-                System.setProperty("webdriver.edge.driver", System.getenv("EDGE_WEBDRIVER"));
+                System.setProperty("webdriver.edge.driver", "webdriver/msedgedriver.exe");
                 edgeOptions.addArguments("InPrivate");
                 edgeOptions.addArguments("start-maximized");
                 edgeOptions.addArguments("--window-size=1920x1080");
 
                 return new EdgeDriver(edgeOptions);
-
-            case KOBITON:
-                String kobitonServerUrl = "https://qhub_poc:d8e45b2f-8bf0-48c5-a160-5b2f658d736b@api.kobiton.com/wd/hub";
-
-                DesiredCapabilities capabilities = new DesiredCapabilities();
-// The generated session will be visible to you only.
-                capabilities.setCapability("sessionName", "Automation test session");
-                capabilities.setCapability("sessionDescription", "");
-                capabilities.setCapability("deviceOrientation", "portrait");
-                capabilities.setCapability("noReset", true);
-                capabilities.setCapability("fullReset", false);
-                capabilities.setCapability("captureScreenshots", true);
-                capabilities.setCapability("browserName", "chrome");
-                capabilities.setCapability("deviceGroup", "ORGANIZATION");
-// For deviceName, platformVersion Kobiton supports wildcard
-// character *, with 3 formats: *text, text* and *text*
-// If there is no *, Kobiton will match the exact text provided
-                capabilities.setCapability("deviceName", "Google Pixel 2 XL");
-// The tag is used for finding devices and the user can input only one tag.
-// For example, the data value will be inputted: tagName="TagName1"
-                capabilities.setCapability("tagName", "");
-                capabilities.setCapability("platformVersion", "11");
-                capabilities.setCapability("platformName", "Android");
-                return new AndroidDriver(new URL(kobitonServerUrl), capabilities);
-
         }
-        throw new UnsupportedOperationException("Unsuported browser! " + browserInstance.toString());
+        throw new UnsupportedOperationException("Unsuported browser! " + browserInstance);
 
     }
 
