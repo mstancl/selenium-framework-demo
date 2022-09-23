@@ -21,18 +21,21 @@ public class TextBoxTest extends BaseSuite {
                 .clickOnSubmitButton();
 
         Assert.assertEquals(textBoxPage.getErrorClassOfUserEmail(), "mr-sm-2 field-error form-control");
+        Assert.assertTrue(textBoxPage.getUserEmailBorderColor().isRed());
 
         textBoxPage
                 .enterUserEmail("incorrectEmail@")
                 .clickOnSubmitButton();
 
         Assert.assertEquals(textBoxPage.getErrorClassOfUserEmail(), "mr-sm-2 field-error form-control");
+        Assert.assertTrue(textBoxPage.getUserEmailBorderColor().isRed());
 
         textBoxPage
                 .enterUserEmail("incorrectEmail@domain")
                 .clickOnSubmitButton();
 
         Assert.assertEquals(textBoxPage.getErrorClassOfUserEmail(), "mr-sm-2 field-error form-control");
+        Assert.assertTrue(textBoxPage.getUserEmailBorderColor().isRed());
 
         textBoxPage
                 .enterUserName("Tester")

@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pages.BasePage;
 import utils.PageWait;
+import utils.RGBModel;
+import utils.Utilities;
 
 public class TextBoxPage extends BasePage {
 
@@ -42,6 +44,10 @@ public class TextBoxPage extends BasePage {
 
     public String getErrorClassOfUserEmail() {
         return getAttribute(userEmail_textBox, "class");
+    }
+
+    public RGBModel getUserEmailBorderColor(){
+        return Utilities.parseRGBValuesFromString(userEmail_textBox.getCssValue("border-color"));
     }
 
     public TextBoxPage enterUserName(String input) {
