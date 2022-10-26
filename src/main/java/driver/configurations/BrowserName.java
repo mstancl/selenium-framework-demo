@@ -6,7 +6,6 @@ public enum BrowserName {
 
     CHROME("chrome"),
     FIREFOX("firefox"),
-    KOBITON("kobiton"),
     EDGE("microsoftEdge");
 
 

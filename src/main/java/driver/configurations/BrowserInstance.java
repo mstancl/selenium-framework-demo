@@ -3,11 +3,9 @@ package driver.configurations;
 public class BrowserInstance {
 
     private BrowserName browserName;
-    private BrowserLocation browserLocation;
 
-    public BrowserInstance(BrowserName browserName, BrowserLocation browserLocation) {
+    public BrowserInstance(BrowserName browserName) {
         this.browserName = browserName;
-        this.browserLocation = browserLocation;
     }
 
     public BrowserName getBrowserName() {
@@ -18,19 +16,11 @@ public class BrowserInstance {
         this.browserName = browserName;
     }
 
-    public BrowserLocation getBrowserLocation() {
-        return browserLocation;
-    }
-
-    public void setBrowserLocation(BrowserLocation browserLocation) {
-        this.browserLocation = browserLocation;
-    }
 
     @Override
     public String toString() {
         return "BrowserInstance{" +
                 "browserName='" + browserName + '\'' +
-                ", browserLocation='" + browserLocation + '\'' +
                 '}';
     }
 }

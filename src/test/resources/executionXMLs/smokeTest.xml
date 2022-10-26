@@ -5,12 +5,12 @@
     <test name="elements test suite" enabled="true">
         <classes>
             <class name="com.mstancl.regressionSuites.elements.TextBoxTest"/>
-            <class name="com.mstancl.regressionSuites.elements.CheckBoxTestSuite"/>
+            <class name="com.mstancl.regressionSuites.elements.CheckBoxTest"/>
         </classes>
     </test>
     <test name="forms test suite" enabled="true">
         <classes>
-            <class name="com.mstancl.regressionSuites.forms.FormsTestSuite"/>
+            <class name="com.mstancl.regressionSuites.forms.FormsTest"/>
         </classes>
     </test>
 </suite>
