@@ -1,7 +1,5 @@
 package driver.configurations;
 
-import driver.configurations.BrowserName;
-
 public class BrowserInstance {
 
     private BrowserName browserName;

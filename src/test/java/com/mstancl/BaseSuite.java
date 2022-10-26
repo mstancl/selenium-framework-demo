@@ -2,14 +2,12 @@ package com.mstancl;
 
 import driver.DriverFactory;
 import driver.DriverManager;
-import extentTestReports.TestListener;
 import org.testng.annotations.*;
 import properties.PropertiesManager;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-@Listeners({TestListener.class})
 public class BaseSuite {
 
     @BeforeSuite
@@ -30,11 +28,11 @@ public class BaseSuite {
 
     @BeforeMethod
     public void beforeMethod() {
-        if (DriverManager.getDriver().getWindowHandles().size()>1){
-            String firstTab  = DriverManager.getDriver().getWindowHandles().toArray()[0].toString();
-           String adblockPopup = DriverManager.getDriver().getWindowHandles().toArray()[1].toString();
-           DriverManager.getDriver().switchTo().window(adblockPopup).close();
-           DriverManager.getDriver().switchTo().window(firstTab);
+        if (DriverManager.getDriver().getWindowHandles().size() > 1) {
+            String firstTab = DriverManager.getDriver().getWindowHandles().toArray()[0].toString();
+            String adblockPopup = DriverManager.getDriver().getWindowHandles().toArray()[1].toString();
+            DriverManager.getDriver().switchTo().window(adblockPopup).close();
+            DriverManager.getDriver().switchTo().window(firstTab);
         }
         DriverManager.getDriver().get(PropertiesManager.getProperty("sut.url"));
         DriverManager.getDriver().manage().window().maximize();

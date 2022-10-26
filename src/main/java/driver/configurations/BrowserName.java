@@ -16,13 +16,13 @@ public enum BrowserName {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public static BrowserName getBrowserName(String browserName) {
         return Arrays.stream(values())
                 .filter(x -> x.getName().equalsIgnoreCase(browserName))
                 .findFirst().orElse(null);
+    }
+
+    public String getName() {
+        return name;
     }
 }

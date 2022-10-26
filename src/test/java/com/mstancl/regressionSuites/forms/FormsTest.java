@@ -131,13 +131,13 @@ public class FormsTest extends BaseSuite {
         formsHomePage
                 .inputSubjects("a");
 
-        Assert.assertTrue(formsHomePage.isSubjectDisplayed("Maths"));
-        Assert.assertTrue(formsHomePage.isSubjectDisplayed("Accounting"));
-        Assert.assertTrue(formsHomePage.isSubjectDisplayed("Arts"));
-        Assert.assertTrue(formsHomePage.isSubjectDisplayed("Social Studies"));
+        Assert.assertTrue(formsHomePage.isMathsSubjectDisplayed());
+        Assert.assertTrue(formsHomePage.isAccountingSubjectDisplayed());
+        Assert.assertTrue(formsHomePage.isArtsSubjectDisplayed());
+        Assert.assertTrue(formsHomePage.isSocialStudiesSubjectDisplayed());
 
         formsHomePage
-                .clickOnSubject("Maths");
+                .clickOnMathsSubject();
 
         Assert.assertTrue(formsHomePage.isSubjectRegistered("Maths"));
         Assert.assertTrue(formsHomePage.doesCrossNextToSubjectExist("Maths"));
@@ -146,7 +146,7 @@ public class FormsTest extends BaseSuite {
                 .inputSubjects("arts");
 
         formsHomePage
-                .clickOnSubject("Arts");
+                .clickOnArtsSubject();
         Assert.assertTrue(formsHomePage.isSubjectRegistered("Arts"));
         Assert.assertTrue(formsHomePage.doesCrossNextToSubjectExist("Arts"));
 

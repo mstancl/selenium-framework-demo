@@ -46,7 +46,7 @@ public class TextBoxPage extends BasePage {
         return getAttribute(userEmail_textBox, "class");
     }
 
-    public RGBModel getUserEmailBorderColor(){
+    public RGBModel getUserEmailBorderColor() {
         return Utilities.parseRGBValuesFromString(userEmail_textBox.getCssValue("border-color"));
     }
 

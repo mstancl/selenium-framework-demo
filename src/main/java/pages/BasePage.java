@@ -19,10 +19,10 @@ public class BasePage {
 
     protected void click(WebElement webElement) {
 
-        JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
-        jse.executeScript("arguments[0].scrollIntoView()", webElement);
+        /*JavascriptExecutor jse = (JavascriptExecutor) DriverManager.getDriver();
+        jse.executeScript("arguments[0].scrollIntoView()", webElement);*/
 
-       PageWait.waitForWebElementToLoad(webElement);
+        PageWait.waitForWebElementToLoad(webElement);
         PageWait.waitForDocumentReadyState();
         webElement.click();
         PageWait.waitForDocumentReadyState();
@@ -99,10 +99,12 @@ public class BasePage {
     protected boolean isElementPresent(WebElement webElement) {
         PageWait.waitForDocumentReadyState();
         try {
-            Actions actions = new Actions(DriverManager.getDriver());
-            actions.moveToElement(webElement).perform();
+            if (webElement.isEnabled()) {
+                return true;
+            }
+            PageWait.waitForWebElementToBeDisplayed(2, webElement);
             return true;
-        } catch (TimeoutException | NoSuchElementException e) {
+        } catch (Exception e) {
             return false;
         }
     }

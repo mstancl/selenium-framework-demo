@@ -2,7 +2,6 @@ package pages.forms;
 
 import driver.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -80,6 +79,18 @@ public class FormsHomePage extends BasePage {
     @FindBy(id = "hobbies-checkbox-3")
     private WebElement musicCheckBoxHobbies_checkbox;
 
+    @FindBy(xpath = ".//div[@id='subjectsContainer']//div[text()='Maths']")
+    private WebElement mathsSubject_textField;
+
+    @FindBy(xpath = ".//div[@id='subjectsContainer']//div[text()='Accounting']")
+    private WebElement accounting_textField;
+
+    @FindBy(xpath = ".//div[@id='subjectsContainer']//div[text()='Arts']")
+    private WebElement arts_textField;
+
+    @FindBy(xpath = ".//div[@id='subjectsContainer']//div[text()='Social Studies']")
+    private WebElement socialStudies_textField;
+
     public FormsHomePage() {
         super();
         Assert.assertEquals(read(mainHeader_label), "Forms");
@@ -119,7 +130,7 @@ public class FormsHomePage extends BasePage {
         if (day.length() == 1) {
             day = "0" + day;
         }
-        click(DriverManager.getDriver().findElement(By.xpath(".//div[@class='react-datepicker__day react-datepicker__day--0" + day + "']")));
+        click(DriverManager.getDriver().findElement(By.xpath(".//div[contains(@class,'react-datepicker__day react-datepicker__day--0" + day + "')]")));
         return this;
     }
 
@@ -132,19 +143,33 @@ public class FormsHomePage extends BasePage {
         return this;
     }
 
-    public FormsHomePage clickOnSubject(String subjectName) {
-        DriverManager.getDriver().findElement(By.xpath(".//div[@id='subjectsContainer']//div[text()='" + subjectName + "']")).click();
+
+    public FormsHomePage clickOnMathsSubject() {
+        click(mathsSubject_textField);
         return this;
     }
 
-    public Boolean isSubjectDisplayed(String subjectName) {
-        try {
-            WebElement webElement = DriverManager.getDriver().findElement(By.xpath(".//div[@id='subjectsContainer']//div[text()='" + subjectName + "']"));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public boolean isMathsSubjectDisplayed() {
+        return isElementPresent(mathsSubject_textField);
     }
+
+    public boolean isAccountingSubjectDisplayed() {
+        return isElementPresent(accounting_textField);
+    }
+
+    public FormsHomePage clickOnArtsSubject() {
+        click(arts_textField);
+        return this;
+    }
+
+    public boolean isArtsSubjectDisplayed() {
+        return isElementPresent(arts_textField);
+    }
+
+    public boolean isSocialStudiesSubjectDisplayed() {
+        return isElementPresent(socialStudies_textField);
+    }
+
 
     public Boolean isSubjectRegistered(String subjectName) {
         try {

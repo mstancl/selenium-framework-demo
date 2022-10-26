@@ -6,7 +6,7 @@ public class NoFrameworkDemoClass {
 
 
     @Test()
-    public void noFrameworkTest(){
+    public void noFrameworkTest() {
 
     }
 
