@@ -2,6 +2,7 @@ package pages.forms;
 
 import driver.DriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -199,6 +200,8 @@ public class FormsHomePage extends BasePage {
 
     public FormsHomePage clickOnPracticeFormButton() {
         click(practiceForm_button);
+        /*JavascriptExecutor jse = (JavascriptExecutor)DriverManager.getDriver();
+        jse.executeScript("document.body.style.zoom='50%'");*/
         return this;
     }
 

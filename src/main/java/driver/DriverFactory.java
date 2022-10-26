@@ -15,6 +15,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import properties.PropertiesManager;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -39,8 +40,16 @@ public class DriverFactory {
                     System.setProperty("webdriver.chrome.driver", "webdriver/chromedriver.exe");
                 }
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setExperimentalOption("useAutomationExtension", false);
+                chromeOptions.addExtensions(new File("extension_5_3_0_0.crx"));
+                //chromeOptions.addArguments("load-extension=/Users/je95959/Library/Application Support/Google/Chrome/Default/Extensions/gighmmpiobklfepjocnamgkkbiglidom/5.3.0_0");
                 chromeOptions.addArguments("disable-infobars");
+                chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                chromeOptions.addArguments("start-maximized");
+                chromeOptions.addArguments("--window-size=1920x1111");
+                chromeOptions.addArguments("--ignore-certificate-errors"); //Required for remote
+                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--disable-dev-shm-usage");
+                chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
                 if (browserInstance.getBrowserLocation().equals(BrowserLocation.LOCAL)) {
                     return new ChromeDriver(chromeOptions);

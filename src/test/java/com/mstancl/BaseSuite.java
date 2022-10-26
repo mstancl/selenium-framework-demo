@@ -30,6 +30,12 @@ public class BaseSuite {
 
     @BeforeMethod
     public void beforeMethod() {
+        if (DriverManager.getDriver().getWindowHandles().size()>1){
+            String firstTab  = DriverManager.getDriver().getWindowHandles().toArray()[0].toString();
+           String adblockPopup = DriverManager.getDriver().getWindowHandles().toArray()[1].toString();
+           DriverManager.getDriver().switchTo().window(adblockPopup).close();
+           DriverManager.getDriver().switchTo().window(firstTab);
+        }
         DriverManager.getDriver().get(PropertiesManager.getProperty("sut.url"));
         DriverManager.getDriver().manage().window().maximize();
     }
