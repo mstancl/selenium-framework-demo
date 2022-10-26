@@ -30,6 +30,7 @@ using :
   you extracted the .zip)
 
 ## How to run tests
+(You do not have to run them, you can wait for the workshop where we will do it together) 
 
 Execute `mvn clean install -DsuiteXmlFile=src/test/resources/executionXMLs/smokeTest.xml` from command line  
 This will execute the smokeTest.xml suite containing all the tests.
