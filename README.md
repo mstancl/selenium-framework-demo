@@ -34,9 +34,6 @@ using :
 Execute `mvn clean install -DsuiteXmlFile=src/test/resources/executionXMLs/smokeTest.xml` from command line  
 This will execute the smokeTest.xml suite containing all the tests.
 
-## Reporting
-
-Once the tests finish, you can find the test report under `test-output/extent.html`
 
 ## Demo web application
 
